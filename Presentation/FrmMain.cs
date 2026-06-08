@@ -29,25 +29,10 @@ namespace Presentation
         public static int CurrentUserId = 0;
 
 
+        private Form currentChildForm;
 
 
 
-        ////////////////////////////////////////////////////////////////////////////////// TEST GIỎ HÀNG
-
-        private int _qty = 1;        // số lượng đang chọn
-        private int _cartCount = 0;  // số lượng trong giỏ
-
-        // ====== BADGE ======
-        private Guna2CircleButton _badge;
-
-        private readonly float[] _bounce = { 1f, 1.35f, 0.95f, 1.15f, 1f };
-        private int _bounceIndex = 0;
-
-        private int _badgeBaseSize = 18;
-        private Point _badgeCenter;
-
-
-        ////////////////////////////////////////////////////////////////////// TEST siderbar
 
         private readonly Dictionary<Type, Form> _cache = new Dictionary<Type, Form>();
         private Form _currentPage;
@@ -71,8 +56,8 @@ namespace Presentation
             // Giảm flicker cho Form
             this.DoubleBuffered = true;
 
-            EnableDoubleBuffer(panelImage);
-            EnableDoubleBuffer(flowLayoutPanelContent);
+           
+            EnableDoubleBuffer(pnlTrangChinh);
 
             LoadSlides();
 
@@ -89,8 +74,8 @@ namespace Presentation
 
 
             // 1) Gán đúng 2 biến này theo tên control của bạn
-            _containerPanel = panelViewport2;          // vùng nội dung bên phải
-            _homeView = flowLayoutPanelContent;        // “trang chính” của bạn (đổi đúng tên)
+        
+            _homeView = pnlTrangChinh;        // “trang chính” của bạn (đổi đúng tên)
 
             // mặc định đang ở Home
             ShowHome();
@@ -169,7 +154,22 @@ namespace Presentation
 
 
 
-
+        // Hàm mở form con nhúng vào pnlTrangChinh
+        private void OpenChildForm(Form childForm)
+        {
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close(); // Đóng form cũ
+            }
+            currentChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            pnlTrangChinh.Controls.Add(childForm);
+            pnlTrangChinh.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
 
 
 
@@ -187,25 +187,7 @@ namespace Presentation
 
 
 
-        public void OpenChildForm(Form child)
-        {
-            // Ẩn form con đang mở (không Close để khỏi mất dữ liệu)
-            if (_activeChild != null && !_activeChild.IsDisposed)
-                _activeChild.Hide();
-
-            _activeChild = child;
-
-            child.TopLevel = false;
-            child.FormBorderStyle = FormBorderStyle.None;
-            child.Dock = DockStyle.Fill;
-
-            // Nếu chưa add vào panel thì add
-            if (!panelViewport2.Controls.Contains(child))
-                panelViewport2.Controls.Add(child);
-
-            child.BringToFront();
-            child.Show();
-        }
+        
 
         ////////////////////////////////////////////////////////////////////////
 
@@ -330,7 +312,8 @@ namespace Presentation
 
             btnBanHang.Checked = true;
 
-
+            // Mở FrmBanHang ngay khi form main vừa load xong
+            OpenChildForm(new FrmBanHang());
 
 
 
@@ -583,6 +566,11 @@ namespace Presentation
         }
 
         private void label16_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Logout_Click(object sender, EventArgs e)
         {
 
         }
