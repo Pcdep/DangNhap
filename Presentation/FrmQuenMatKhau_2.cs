@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdQuenMatKhau2 : Form
+    public partial class FrmQuenMatKhau_2 : Form
     {
-        public gdQuenMatKhau2()
+        public FrmQuenMatKhau_2()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -56,7 +56,7 @@ namespace gd_chính
                             MessageBox.Show("Đổi mật khẩu thành công! Vui lòng đăng nhập lại.");
 
                             // Quay về đăng nhập
-                            gdDangNhap frmLogin = new gdDangNhap();
+                            FrmDangNhap frmLogin = new FrmDangNhap();
                             frmLogin.Show();
                             this.Close();
                         }
@@ -75,7 +75,7 @@ namespace gd_chính
 
         private void btnBackToLogin_Click(object sender, EventArgs e)
         {
-            gdDangNhap frmLogin = new gdDangNhap();
+            FrmDangNhap frmLogin = new FrmDangNhap();
             frmLogin.Show();
             this.Close();
         }

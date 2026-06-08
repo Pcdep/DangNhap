@@ -1,6 +1,6 @@
-﻿namespace gd_chính
+﻿namespace Presentation
 {
-    partial class gdXacNhanMa
+    partial class FrmXacNhanMa
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gdXacNhanMa));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmXacNhanMa));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnBack = new Guna.UI2.WinForms.Guna2Button();
             this.btnConfirm = new Guna.UI2.WinForms.Guna2Button();
-            this.rjCircularPictureBox1 = new RJCodeAdvance.RJControls.RJCircularPictureBox();
+          
             this.lblTimer = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtOTP6 = new Guna.UI2.WinForms.Guna2TextBox();
@@ -48,7 +48,7 @@
             this.txtOTP1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.timerCountDown = new System.Windows.Forms.Timer(this.components);
             this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rjCircularPictureBox1)).BeginInit();
+           
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -58,7 +58,7 @@
             this.guna2Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.guna2Panel1.Controls.Add(this.btnBack);
             this.guna2Panel1.Controls.Add(this.btnConfirm);
-            this.guna2Panel1.Controls.Add(this.rjCircularPictureBox1);
+           
             this.guna2Panel1.Controls.Add(this.lblTimer);
             this.guna2Panel1.Controls.Add(this.label6);
             this.guna2Panel1.Controls.Add(this.txtOTP6);
@@ -119,20 +119,7 @@
             // 
             // rjCircularPictureBox1
             // 
-            this.rjCircularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            this.rjCircularPictureBox1.BorderColor = System.Drawing.Color.Black;
-            this.rjCircularPictureBox1.BorderColor2 = System.Drawing.Color.HotPink;
-            this.rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            this.rjCircularPictureBox1.BorderSize = 2;
-            this.rjCircularPictureBox1.GradientAngle = 50F;
-            this.rjCircularPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("rjCircularPictureBox1.Image")));
-            this.rjCircularPictureBox1.Location = new System.Drawing.Point(470, 81);
-            this.rjCircularPictureBox1.Name = "rjCircularPictureBox1";
-            this.rjCircularPictureBox1.Size = new System.Drawing.Size(161, 161);
-            this.rjCircularPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.rjCircularPictureBox1.TabIndex = 48;
-            this.rjCircularPictureBox1.TabStop = false;
-            this.rjCircularPictureBox1.Click += new System.EventHandler(this.rjCircularPictureBox1_Click);
+            
             // 
             // lblTimer
             // 
@@ -367,7 +354,7 @@
             this.Load += new System.EventHandler(this.gdXacNhanMa_Load);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rjCircularPictureBox1)).EndInit();
+          
             this.ResumeLayout(false);
 
         }
@@ -387,7 +374,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtOTP2;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Label label6;
-        private RJCodeAdvance.RJControls.RJCircularPictureBox rjCircularPictureBox1;
+       
         private System.Windows.Forms.Timer timerCountDown;
         private Guna.UI2.WinForms.Guna2Button btnConfirm;
         private Guna.UI2.WinForms.Guna2Button btnBack;

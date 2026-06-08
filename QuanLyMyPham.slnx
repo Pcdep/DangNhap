@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="QuanLyMyPham/QuanLyMyPham.csproj" />
+  <Project Path="Application/Application.csproj" Id="9c0c1200-f4c5-45f1-8e64-2e8104ec33a1" />
+  <Project Path="Domain/Domain.csproj" Id="c63d429f-5bd4-43e9-9df1-b1509811cb2b" />
+  <Project Path="Infracstructure/Infracstructure.csproj" Id="5b057b19-51c1-4dba-9286-2abb3483572e" />
+  <Project Path="Presentation/Presentation.csproj" Id="8373ea87-2f54-460c-bf87-623bd13063ee" />
 </Solution>

@@ -1,6 +1,6 @@
-﻿namespace gd_chính
+﻿namespace Presentation
 {
-    partial class gdDangKy2
+    partial class FrmDangKy_2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gdDangKy2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDangKy_2));
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnLoginNav = new Guna.UI2.WinForms.Guna2Button();
             this.btnBack = new Guna.UI2.WinForms.Guna2Button();

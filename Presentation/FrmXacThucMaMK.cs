@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdXacThucMaMK : Form
+    public partial class FrmXacThucMaMK : Form
     {
         private int _timeLeft = 120; // 2 phút
-        public gdXacThucMaMK()
+        public FrmXacThucMaMK()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -56,7 +56,7 @@ namespace gd_chính
                 timerCountDown.Stop();
 
                 // --- CHUYỂN SANG FORM ĐỔI MẬT KHẨU ---
-                gdQuenMatKhau2 frmReset = new gdQuenMatKhau2();
+                FrmQuenMatKhau_2 frmReset = new FrmQuenMatKhau_2();
                 frmReset.Show();
                 this.Close();
             }
@@ -68,7 +68,7 @@ namespace gd_chính
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            gdDangNhap frmLogin = new gdDangNhap();
+            FrmDangNhap frmLogin = new FrmDangNhap();
             frmLogin.Show();
             this.Close();
         }

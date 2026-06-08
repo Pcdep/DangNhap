@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdDangKy1 : Form
+    public partial class FrmDangKy_1 : Form
     {
-        public gdDangKy1()
+        public FrmDangKy_1()
         {
             InitializeComponent();
         }
@@ -80,7 +80,7 @@ namespace gd_chính
             {
                 MessageBox.Show("Mã OTP đã được gửi! Vui lòng kiểm tra Email.");
 
-                gdXacNhanMa frmVerify = new gdXacNhanMa();
+                FrmXacNhanMa frmVerify = new FrmXacNhanMa();
                 frmVerify.Show();
                 this.Hide();
             }
@@ -90,7 +90,7 @@ namespace gd_chính
         {
             // Mở form đăng nhập có sẵn của bạn
             // Giả sử tên form đăng nhập là gdDangNhap
-            gdDangNhap frmLogin = new gdDangNhap();
+            FrmDangNhap frmLogin = new FrmDangNhap();
             frmLogin.Show();
             this.Close();
         }

@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdQuenMatKhau1 : Form
+    public partial class FrmQuenMatKhau_1 : Form
     {
-        public gdQuenMatKhau1()
+        public FrmQuenMatKhau_1()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -76,7 +76,7 @@ namespace gd_chính
                 MessageBox.Show("Mã xác thực đã được gửi vào Email của bạn.");
 
                 // Chuyển sang bước xác thực
-                gdXacThucMaMK frmVerify = new gdXacThucMaMK();
+                FrmXacThucMaMK frmVerify = new FrmXacThucMaMK();
                 frmVerify.Show();
                 this.Close();
             }
@@ -84,7 +84,7 @@ namespace gd_chính
 
         private void btnBackToLogin_Click(object sender, EventArgs e)
         {
-            gdDangNhap frmLogin = new gdDangNhap();
+            FrmDangNhap frmLogin = new FrmDangNhap();
             frmLogin.Show();
             this.Close();
         }

@@ -1,6 +1,6 @@
-﻿namespace gd_chính
+﻿namespace Presentation
 {
-    partial class gdQuenMatKhau2
+    partial class FrmQuenMatKhau_2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gdQuenMatKhau2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmQuenMatKhau_2));
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnBackToLogin = new Guna.UI2.WinForms.Guna2Button();
             this.label3 = new System.Windows.Forms.Label();

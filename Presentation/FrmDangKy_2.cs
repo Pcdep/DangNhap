@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdDangKy2 : Form
+    public partial class FrmDangKy_2 : Form
     {
-        public gdDangKy2()
+        public FrmDangKy_2()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -64,7 +64,7 @@ namespace gd_chính
                 MessageBox.Show("Đăng ký tài khoản thành công!");
 
                 // 3. Chuyển về trang Đăng nhập
-                gdDangNhap frmLogin = new gdDangNhap();
+                FrmDangNhap frmLogin = new FrmDangNhap();
                 frmLogin.Show();
                 this.Close();
             }
@@ -77,14 +77,14 @@ namespace gd_chính
         private void btnBack_Click(object sender, EventArgs e)
         {
             // Quay lại trang 1
-            gdDangKy1 frmReg1 = new gdDangKy1();
+            FrmDangKy_1 frmReg1 = new FrmDangKy_1();
             frmReg1.Show();
             this.Close();
         }
 
         private void btnLoginNav_Click(object sender, EventArgs e)
         {
-            gdDangNhap frmLogin = new gdDangNhap();
+            FrmDangNhap frmLogin = new FrmDangNhap();
             frmLogin.Show();
             this.Close();
         }

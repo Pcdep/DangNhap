@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdDangNhap : Form
+    public partial class FrmDangNhap : Form
     {
-        public gdDangNhap()
+        public FrmDangNhap()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -27,7 +27,7 @@ namespace gd_chính
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Chuyển sang giao diện Đăng ký bước 1
-            gdDangKy1 frmReg1 = new gdDangKy1();
+            FrmDangKy_1 frmReg1 = new FrmDangKy_1();
             frmReg1.StartPosition = FormStartPosition.CenterScreen;
             frmReg1.Show();
             this.Hide();
@@ -35,7 +35,7 @@ namespace gd_chính
 
         private void lblRegister_Click(object sender, EventArgs e)
         {
-            gdDangKy1 frmReg1 = new gdDangKy1();
+            FrmDangKy_1 frmReg1 = new FrmDangKy_1();
             frmReg1.StartPosition = FormStartPosition.CenterScreen;
             frmReg1.Show();
 
@@ -73,7 +73,7 @@ namespace gd_chính
                                 string name = reader["FullName"].ToString();
 
                                 // 1. Cập nhật User ID
-                                Form1.CurrentUserId = userId;
+                                FrmMain.CurrentUserId = userId;
 
                                 MessageBox.Show("Đăng nhập thành công! Xin chào " + name);
 
@@ -81,7 +81,7 @@ namespace gd_chính
                                 
 
                                 // 3. Khởi tạo và mở Form1 theo dạng HỘP THOẠI (Dialog)
-                                Form1 frmMain = new Form1();
+                                FrmMain frmMain = new FrmMain();
                                 frmMain.StartPosition = FormStartPosition.CenterScreen;
                                 this.Hide();
                                 
@@ -112,7 +112,7 @@ namespace gd_chính
 
         private void linkmk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            gdQuenMatKhau1 frmForgot = new gdQuenMatKhau1();
+            FrmQuenMatKhau_1 frmForgot = new FrmQuenMatKhau_1();
             frmForgot.Show();
             this.Hide();
         }

@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gd_chính
+namespace Presentation
 {
-    public partial class gdXacNhanMa : Form
+    public partial class FrmXacNhanMa : Form
     {
         private int _timeLeft = 120; // 120 giây = 2 phút
-        public gdXacNhanMa()
+        public FrmXacNhanMa()
         {
             InitializeComponent();
         }
@@ -74,7 +74,7 @@ namespace gd_chính
                 MessageBox.Show("Xác thực thành công!");
 
                 // 3. Chuyển sang Form nhập thông tin (gdDangKy2)
-                gdDangKy2 frmInfo = new gdDangKy2();
+                FrmDangKy_2 frmInfo = new FrmDangKy_2();
                 frmInfo.Show();
                 this.Close();
             }
@@ -87,7 +87,7 @@ namespace gd_chính
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            gdDangKy1 frmReg1 = new gdDangKy1();
+            FrmDangKy_1 frmReg1 = new FrmDangKy_1();
             frmReg1.Show();
 
             this.Close(); // Đóng form xác thực
@@ -95,7 +95,7 @@ namespace gd_chính
 
         private void GoBackToRegister1()
         {
-            gdDangKy1 frmReg1 = new gdDangKy1();
+            FrmDangKy_1 frmReg1 = new FrmDangKy_1();
             frmReg1.Show();
             this.Close(); // Đóng form này luôn
         }
