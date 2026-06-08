@@ -208,7 +208,7 @@
             btn2.CustomImages.ImageAlign = HorizontalAlignment.Left;
             btn2.CustomImages.ImageOffset = new Point(0, -2);
             btn2.CustomImages.ImageSize = new Size(25, 25);
-            btn2.CustomizableEdges = customizableEdges3;
+            btn2.CustomizableEdges = customizableEdges27;
             btn2.DisabledState.BorderColor = Color.DarkGray;
             btn2.DisabledState.CustomBorderColor = Color.DarkGray;
             btn2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
