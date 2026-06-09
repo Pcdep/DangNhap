@@ -51,34 +51,8 @@ namespace Presentation
         public FrmMain()
         {
             InitializeComponent();
-
             this.StartPosition = FormStartPosition.CenterScreen;
-            // Giảm flicker cho Form
             this.DoubleBuffered = true;
-
-           
-            EnableDoubleBuffer(pnlTrangChinh);
-
-            LoadSlides();
-
-
-            // Timer tự chuyển
-            timerAuto.Interval = _normalPauseMs;
-            timerAuto.Tick += (_, __) => AutoStep();
-            timerAuto.Start();
-
-
-
-
-
-
-
-            // 1) Gán đúng 2 biến này theo tên control của bạn
-        
-            _homeView = pnlTrangChinh;        // “trang chính” của bạn (đổi đúng tên)
-
-            // mặc định đang ở Home
-            ShowHome();
         }
 
         ////////////////////////////////////////////////////////////////////////////////// TEST GIỎ HÀNG
@@ -91,13 +65,11 @@ namespace Presentation
 
         public void SetActiveMenuButton(Guna2Button activeButton)
         {
-            // 1. Tắt đèn tất cả các nút trước (đưa về trạng thái thường)
             btnBanHang.Checked = false;
+            btnSanPham.Checked = false;
             btnThongTin.Checked = false;
-            // btnUuDai.Checked = false; // Thêm các nút khác nếu có
-            // btnHotDeals.Checked = false;
+            btnKhoHang.Checked = false;
 
-            // 2. Bật đèn nút được chọn
             if (activeButton != null)
             {
                 activeButton.Checked = true;
@@ -159,7 +131,7 @@ namespace Presentation
         {
             if (currentChildForm != null)
             {
-                currentChildForm.Close(); // Đóng form cũ
+                currentChildForm.Close();
             }
             currentChildForm = childForm;
             childForm.TopLevel = false;
@@ -196,39 +168,7 @@ namespace Presentation
 
 
 
-        private void AutoStep()
-        {
-            if (_slides.Count < 2 || _isAnimating) return;
-
-            int next = _currentIndex + _dir;
-
-            // Nếu sắp vượt quá biên -> đảo hướng (ping-pong)
-            if (next >= _slides.Count)
-            {
-                _dir = -1;
-                next = _currentIndex + _dir;
-            }
-            else if (next < 0)
-            {
-                _dir = 1;
-                next = _currentIndex + _dir;
-            }
-
-
-        }
-
-        private void LoadSlides()
-        {
-            // CÁCH 1 (khuyến nghị): Add ảnh vào Resources rồi dùng:
-            // _slides.Add(Properties.Resources.poster1);
-            // _slides.Add(Properties.Resources.poster2);
-            string pathFolder = Application.StartupPath + @"\Images\";
-            // CÁCH 2: Load từ file nhưng copy để không lock file
-            _slides.Add(LoadImageNoLock(pathFolder + "Poster3.jpg"));
-            _slides.Add(LoadImageNoLock(pathFolder + "Poster1.jpg"));
-            _slides.Add(LoadImageNoLock(pathFolder + "Poster2.jpg"));
-            _slides.Add(LoadImageNoLock(pathFolder + "Poster4.jpg"));
-        }
+        
 
         private Image LoadImageNoLock(string path)
         {
@@ -307,27 +247,18 @@ namespace Presentation
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            _timeRemaining = TimeSpan.FromHours(2);
-            timerFlashSale.Start();
-
-            btnBanHang.Checked = true;
-
             // Mở FrmBanHang ngay khi form main vừa load xong
+            SetActiveMenuButton(btnBanHang);
             OpenChildForm(new FrmBanHang());
-
-
-
 
         }
         private void Form1_Shown(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal; // Đảm bảo không bị thu nhỏ
-            this.Activate();       // Kích hoạt form
-            this.TopMost = true;   // Ép lên trên cùng
-            this.TopMost = false;  // Trả lại trạng thái bình thường ngay lập tức
-            this.Focus();          // Lấy tiêu điểm bàn phím
-                                   // 2. --- THÊM ĐOẠN NÀY ĐỂ CĂN GIỮA TUYỆT ĐỐI ---
-                                   // Cách này tính toán lại vị trí dựa trên màn hình chính xác tại thời điểm hiện tại
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
+            this.Focus();
+
+            // Căn giữa màn hình tuyệt đối
             int x = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
             int y = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
             this.Location = new Point(x, y);
@@ -557,7 +488,8 @@ namespace Presentation
 
         private void btnBanHang_Click(object sender, EventArgs e)
         {
-
+            SetActiveMenuButton(btnBanHang);
+            OpenChildForm(new FrmBanHang());
         }
 
         private void btnSanPham_Click(object sender, EventArgs e)
@@ -572,7 +504,9 @@ namespace Presentation
 
         private void Logout_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            FrmDangNhap login = new FrmDangNhap();
+            login.Show();
         }
     }
 }

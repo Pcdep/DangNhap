@@ -11,7 +11,7 @@ namespace Presentation
         {
            
             ApplicationConfiguration.Initialize();
-            Application.Run(new FrmDangNhap());
+            Application.Run(new FrmMain());
         }
     }
 }

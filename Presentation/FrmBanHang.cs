@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-  
+
     public partial class FrmBanHang : Form
     {
         public FrmBanHang()
@@ -46,21 +46,62 @@ namespace Presentation
             // Bắt buộc phải có vòng lặp để sinh ra 3 cái Component
             foreach (var sp in danhSachSP)
             {
-                // 1. Lấy cái khuôn UC_SanPham ra
                 UC_SanPham uc = new UC_SanPham();
-
-                // 2. Đổ dữ liệu vào khuôn
                 uc.CapNhatDuLieu(sp.TenSP, sp.GiaBan);
 
-                // 3. Đẩy vào FlowLayoutPanel để hiển thị
+                // Gắn sự kiện: Khi click vào Component thì mở Popup
+                uc.Click += (sender, e) =>
+                {
+                    // Mở FrmChiTietSanPham và truyền Tên, Giá sang
+                    using (FrmChiTietSanPham frmPopup = new FrmChiTietSanPham(sp.TenSP, sp.GiaBan))
+                    {
+                        // Bắt kết quả trả về sau khi tắt Popup
+                        if (frmPopup.ShowDialog() == DialogResult.OK)
+                        {
+                            int soLuong = frmPopup.SoLuongChon;
+
+                            if (frmPopup.HanhDong == "ThemGio")
+                            {
+                                MessageBox.Show($"Đã thêm {soLuong} hộp {sp.TenSP} vào Giỏ hàng!");
+                                // (Chức năng DataGridView Giỏ Hàng sẽ làm ở bước sau)
+                            }
+                            else if (frmPopup.HanhDong == "DatNgay")
+                            {
+                                // Lúc này FrmChiTietSanPham ĐÃ ĐÓNG HOÀN TOÀN (vì ShowDialog kết thúc)
+
+                                // Gọi Form Hóa Đơn hiện lên ngay lập tức
+                                using (FrmHoaDon frmHD = new FrmHoaDon(sp.TenSP, soLuong, sp.GiaBan))
+                                {
+                                    frmHD.ShowDialog(); // Hiện hóa đơn dạng Popup chèn lên màn hình chính
+                                }
+                            }
+                        }
+                    }
+                };
+
+                foreach (Control c in uc.Controls)
+                {
+                    c.Click += (sender, e) => { uc.Invoke(new Action(() => uc.PerformLayout())); /* Trigger lại click */ };
+                }
+
                 flpSanPham.Controls.Add(uc);
+
             }
         }
+
+
+
+
 
         // Hàm xử lý khi bấm vào Panel Sản phẩm
         private void ThemVaoHoaDon(SanPhamDTO sp)
         {
             MessageBox.Show($"Bạn vừa chọn: {sp.TenSP} - {sp.GiaBan} VNĐ.\nCode đẩy vào DataGridView hóa đơn sẽ viết ở đây!");
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

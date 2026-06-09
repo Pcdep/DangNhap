@@ -50,7 +50,7 @@
             Guna2GradientPanel.FillColor2 = Color.FromArgb(200, 245, 245, 243);
             Guna2GradientPanel.ForeColor = Color.White;
             Guna2GradientPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            Guna2GradientPanel.Location = new Point(269, 53);
+            Guna2GradientPanel.Location = new Point(24, 26);
             Guna2GradientPanel.Margin = new Padding(2);
             Guna2GradientPanel.Name = "Guna2GradientPanel";
             Guna2GradientPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -97,10 +97,11 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Transparent;
             Controls.Add(Guna2GradientPanel);
             Name = "UC_SanPham";
-            Text = "UC_SanPham";
+            Size = new Size(317, 396);
+            Load += UC_SanPham_Load;
             Guna2GradientPanel.ResumeLayout(false);
             Guna2GradientPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picHinhAnh).EndInit();

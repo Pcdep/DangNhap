@@ -10,11 +10,26 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class UC_SanPham : Form
+    public partial class UC_SanPham : UserControl
     {
         public UC_SanPham()
         {
             InitializeComponent();
+            WireAllControls(this);
+        }
+
+        private void WireAllControls(Control control)
+        {
+            foreach (Control child in control.Controls)
+            {
+                child.Click += Control_Click;
+                WireAllControls(child);
+            }
+        }
+
+        private void Control_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
         }
 
         // Hàm này dùng để đổ dữ liệu SQL vào UI
@@ -32,5 +47,9 @@ namespace Presentation
             // Sau này code đẩy sản phẩm sang Giỏ hàng sẽ viết ở đây
         }
 
+        private void UC_SanPham_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
