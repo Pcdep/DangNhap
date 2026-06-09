@@ -42,11 +42,11 @@ namespace Presentation
                 using (SqlConnection cn = Db.Open())
                 {
                     // Update mật khẩu dựa theo Email đã lưu ở bước 1
-                    string query = "UPDATE Users SET Password = @pass WHERE Email = @email";
+                    string query = "UPDATE Users SET MatKhau = @pass WHERE Email = @email";
 
                     using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
-                        cmd.Parameters.AddWithValue("@pass", newPass); // Nên mã hóa pass nếu có thể
+                        cmd.Parameters.AddWithValue("@pass", newPass);
                         cmd.Parameters.AddWithValue("@email", EmailService.UserEmail);
 
                         int result = cmd.ExecuteNonQuery();

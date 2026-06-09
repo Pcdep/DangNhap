@@ -47,15 +47,16 @@ namespace Presentation
                     // Lấy Email từ biến tạm đã lưu ở bước 1
                     string email = EmailService.UserEmail;
 
-                    string query = @"INSERT INTO Users (FullName, Email, Phone, Password, Role) 
-                                     VALUES (@name, @email, @phone, @pass, 'User')";
+                    string query = @"INSERT INTO Users (TaiKhoan, HoTen, Email, SDT, MatKhau, Quyen) 
+                 VALUES (@email, @name, @email, @phone, @pass, 'User')";
 
                     using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
-                        cmd.Parameters.AddWithValue("@name", txtName.Text);
+                        // Dùng @email nhét vào cả cột TaiKhoan và cột Email
                         cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@name", txtName.Text);
                         cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
-                        cmd.Parameters.AddWithValue("@pass", txtPass.Text); // Nên mã hóa password trước khi lưu
+                        cmd.Parameters.AddWithValue("@pass", txtPass.Text);
 
                         cmd.ExecuteNonQuery();
                     }

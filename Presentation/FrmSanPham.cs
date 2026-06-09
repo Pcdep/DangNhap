@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -84,7 +85,49 @@ namespace Presentation
 
 
 
+        private void LoadDanhSachSanPhamGrid()
+        {
+            if (dgvSanPham == null) return;
+
+            dgvSanPham.Rows.Clear();
+            string query = "SELECT MaSP, TenSP, GiaBan, SoLuongTon, TrangThai FROM Products";
+
+            try
+            {
+                using (SqlConnection conn = Db.Open())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string maSP = reader["MaSP"].ToString();
+                                string tenSP = reader["TenSP"].ToString();
+                                decimal giaBan = Convert.ToDecimal(reader["GiaBan"]);
+                                int soLuongTon = Convert.ToInt32(reader["SoLuongTon"]);
+                                bool trangThai = Convert.ToBoolean(reader["TrangThai"]);
+
+                                string tinhTrang = trangThai ? "Đang bán" : "Ngừng kinh doanh";
+
+                                // Thêm một dòng mới vào lưới DataGridView
+                                dgvSanPham.Rows.Add(maSP, tenSP, giaBan.ToString("N0"), soLuongTon, tinhTrang);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi hiển thị danh sách quản lý: " + ex.Message, "Lỗi hệ thống");
+            }
+        }
+
+
+
     }
+
+
 
 
 }

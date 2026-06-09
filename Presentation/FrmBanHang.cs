@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,59 +34,57 @@ namespace Presentation
         }
         private void LoadSanPhamDong()
         {
-            flpSanPham.Controls.Clear(); // Làm sạch panel
+            flpSanPham.Controls.Clear();
 
-            // Dữ liệu giả lập (Sau này sẽ select từ SQL)
-            var danhSachSP = new List<SanPhamDTO>
-    {
-        new SanPhamDTO { MaSP = "SP01", TenSP = "Son Mac Ruby", GiaBan = 350000 },
-        new SanPhamDTO { MaSP = "SP02", TenSP = "Kem Nền Innisfree", GiaBan = 420000 },
-        new SanPhamDTO { MaSP = "SP03", TenSP = "Phấn Phủ Dior", GiaBan = 500000 }
-    };
+            // Chỉ lấy sản phẩm đang kinh doanh và còn hàng trong kho
+            string query = "SELECT MaSP, TenSP, GiaBan FROM Products WHERE TrangThai = 1 AND SoLuongTon > 0";
 
-            // Bắt buộc phải có vòng lặp để sinh ra 3 cái Component
-            foreach (var sp in danhSachSP)
+            try
             {
-                UC_SanPham uc = new UC_SanPham();
-                uc.CapNhatDuLieu(sp.TenSP, sp.GiaBan);
-
-                // Gắn sự kiện: Khi click vào Component thì mở Popup
-                uc.Click += (sender, e) =>
+                using (SqlConnection conn = Db.Open())
                 {
-                    // Mở FrmChiTietSanPham và truyền Tên, Giá sang
-                    using (FrmChiTietSanPham frmPopup = new FrmChiTietSanPham(sp.TenSP, sp.GiaBan))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        // Bắt kết quả trả về sau khi tắt Popup
-                        if (frmPopup.ShowDialog() == DialogResult.OK)
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            int soLuong = frmPopup.SoLuongChon;
-
-                            if (frmPopup.HanhDong == "ThemGio")
+                            while (reader.Read())
                             {
-                                MessageBox.Show($"Đã thêm {soLuong} hộp {sp.TenSP} vào Giỏ hàng!");
-                                // (Chức năng DataGridView Giỏ Hàng sẽ làm ở bước sau)
-                            }
-                            else if (frmPopup.HanhDong == "DatNgay")
-                            {
-                                // Lúc này FrmChiTietSanPham ĐÃ ĐÓNG HOÀN TOÀN (vì ShowDialog kết thúc)
+                                string maSP = reader["MaSP"].ToString();
+                                string tenSP = reader["TenSP"].ToString();
+                                decimal giaBan = Convert.ToDecimal(reader["GiaBan"]);
 
-                                // Gọi Form Hóa Đơn hiện lên ngay lập tức
-                                using (FrmHoaDon frmHD = new FrmHoaDon(sp.TenSP, soLuong, sp.GiaBan))
+                                // Tạo thẻ hiển thị động cho từng sản phẩm
+                                UC_SanPham uc = new UC_SanPham();
+                                uc.CapNhatDuLieu(tenSP, giaBan);
+
+                                // Gắn luồng sự kiện click mở màn hình Popup chi tiết đặt hàng
+                                uc.Click += (sender, e) =>
                                 {
-                                    frmHD.ShowDialog(); // Hiện hóa đơn dạng Popup chèn lên màn hình chính
-                                }
+                                    using (FrmChiTietSanPham frmPopup = new FrmChiTietSanPham(tenSP, giaBan))
+                                    {
+                                        if (frmPopup.ShowDialog() == DialogResult.OK)
+                                        {
+                                            int soLuong = frmPopup.SoLuongChon;
+                                            if (frmPopup.HanhDong == "DatNgay")
+                                            {
+                                                using (FrmHoaDon frmHD = new FrmHoaDon(tenSP, soLuong, giaBan))
+                                                {
+                                                    frmHD.ShowDialog();
+                                                }
+                                            }
+                                        }
+                                    }
+                                };
+
+                                flpSanPham.Controls.Add(uc);
                             }
                         }
                     }
-                };
-
-                foreach (Control c in uc.Controls)
-                {
-                    c.Click += (sender, e) => { uc.Invoke(new Action(() => uc.PerformLayout())); /* Trigger lại click */ };
                 }
-
-                flpSanPham.Controls.Add(uc);
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể tải danh sách sản phẩm: " + ex.Message, "Lỗi CSDL");
             }
         }
 

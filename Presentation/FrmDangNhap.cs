@@ -45,30 +45,22 @@ namespace Presentation
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUser.Text.Trim(); // Nhớ check đúng tên control txt của bạn
-            string password = txtPass.Text.Trim();
+            string username = txtTenDangNhap.Text.Trim();
+            string password = txtMatKhau.Text.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu!", "Thông báo");
                 return;
             }
 
-            string query = "SELECT Role, FullName FROM Users WHERE Username = @User AND Password = @Pass";
+            // Câu lệnh chuẩn hóa theo tên cột mới trong CSDL
+            string query = "SELECT Quyen, HoTen FROM Users WHERE TaiKhoan = @User AND MatKhau = @Pass";
 
-            // Use a connection string from App.config/Web.config instead of the missing Infracstructure helper
-            string connStr = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
-            if (string.IsNullOrEmpty(connStr))
+            try
             {
-                MessageBox.Show("Connection string 'DefaultConnection' not found in configuration.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                try
+                using (SqlConnection conn = Db.Open()) // Gọi hàm Open từ lớp Db của bạn
                 {
-                    conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@User", username);
@@ -76,31 +68,32 @@ namespace Presentation
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Đăng nhập thành công
+                            if (reader.Read())
                             {
-                                string quyen = reader["Role"].ToString();
-                                string hoTen = reader["FullName"].ToString();
+                                // Sửa từ "Role", "FullName" thành "Quyen", "HoTen"
+                                string quyen = reader["Quyen"].ToString();
+                                string hoTen = reader["HoTen"].ToString();
 
-                                MessageBox.Show($"Xin chào {hoTen}!\nBạn đang đăng nhập với quyền: {quyen}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"Xin chào {hoTen}!\nQuyền: {quyen}", "Thành công");
 
-                                // Mở Form Main và ẩn Form Đăng Nhập
-                                FrmMain frmMain = new FrmMain();
-                                frmMain.Show();
+                                FrmMain main = new FrmMain();
+                                main.Show();
                                 this.Hide();
                             }
-                            else // Sai tài khoản
+                            else
                             {
-                                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Tài khoản hoặc mật khẩu không đúng!", "Thông báo");
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi kết nối SQL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thực thi SQL: " + ex.Message, "Lỗi hệ thống");
             }
         }
+
 
         private void linkmk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
