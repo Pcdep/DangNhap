@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.SqlClient;
 
-public static class Db
+namespace Infracstructure.Data
 {
-
-    public static string ConnString
+    public static class Db
     {
-        get
+        // CHUỖI KẾT NỐI CHUẨN: Đã thêm TrustServerCertificate và MultipleActiveResultSets
+        // Hãy chọn 1 trong các dòng Data Source phù hợp với máy của bạn dưới đây:
+
+        // Trường hợp 1: Dành cho SQL Server thường (Dấu chấm)
+        //private static string connectionString = @"Data Source=.;Initial Catalog=MyPham;Integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+
+        // Trường hợp 2: Dành cho SQL Server Express (Bỏ ẩn dòng dưới nếu máy bạn dùng SQLEXPRESS)
+        private static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=MyPham;Integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+
+        public static SqlConnection GetConnection()
         {
-            var cs = ConfigurationManager.ConnectionStrings["DbSql"];
-            if (cs == null || string.IsNullOrWhiteSpace(cs.ConnectionString))
-                throw new InvalidOperationException("Thiếu connection string DbSql trong App.config.");
-            return cs.ConnectionString;
+            return new SqlConnection(connectionString);
         }
-    }
-
-    public static SqlConnection Open()
-    {
-        SqlConnection cn = new SqlConnection(ConnString);
-        cn.Open();
-        return cn;
     }
 }

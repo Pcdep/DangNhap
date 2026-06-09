@@ -41,18 +41,15 @@ namespace Presentation
             // 2. Lưu vào CSDL (SQL Server)
             try
             {
-                // Dùng chuỗi kết nối từ class Db của bạn
-                using (SqlConnection cn = Db.Open()) // Hoặc new SqlConnection("chuoi_ket_noi")
+                // BẮT ĐẦU COPY ĐOẠN NÀY
+                using (SqlConnection cn = Db.Open())
                 {
-                    // Lấy Email từ biến tạm đã lưu ở bước 1
                     string email = EmailService.UserEmail;
-
                     string query = @"INSERT INTO Users (TaiKhoan, HoTen, Email, SDT, MatKhau, Quyen) 
-                 VALUES (@email, @name, @email, @phone, @pass, 'User')";
+                         VALUES (@email, @name, @email, @phone, @pass, 'User')";
 
                     using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
-                        // Dùng @email nhét vào cả cột TaiKhoan và cột Email
                         cmd.Parameters.AddWithValue("@email", email);
                         cmd.Parameters.AddWithValue("@name", txtName.Text);
                         cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
@@ -63,11 +60,10 @@ namespace Presentation
                 }
 
                 MessageBox.Show("Đăng ký tài khoản thành công!");
-
-                // 3. Chuyển về trang Đăng nhập
                 FrmDangNhap frmLogin = new FrmDangNhap();
                 frmLogin.Show();
                 this.Close();
+                // KẾT THÚC COPY
             }
             catch (Exception ex)
             {

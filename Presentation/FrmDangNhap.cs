@@ -59,7 +59,8 @@ namespace Presentation
 
             try
             {
-                using (SqlConnection conn = Db.Open()) // Gọi hàm Open từ lớp Db của bạn
+                // BẮT ĐẦU COPY ĐOẠN NÀY DÁN ĐÈ VÀO
+                using (SqlConnection conn = Db.Open())
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -70,7 +71,6 @@ namespace Presentation
                         {
                             if (reader.Read())
                             {
-                                // Sửa từ "Role", "FullName" thành "Quyen", "HoTen"
                                 string quyen = reader["Quyen"].ToString();
                                 string hoTen = reader["HoTen"].ToString();
 
@@ -87,6 +87,7 @@ namespace Presentation
                         }
                     }
                 }
+                // KẾT THÚC COPY
             }
             catch (Exception ex)
             {

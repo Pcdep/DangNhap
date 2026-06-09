@@ -38,9 +38,10 @@ namespace Presentation
             bool emailExists = false;
             try
             {
-                using (SqlConnection cn = Db.Open()) // Dùng class Db kết nối
+                // BẮT ĐẦU COPY ĐOẠN NÀY
+                using (SqlConnection cn = Db.Open())
                 {
-                    string query = "SELECT COUNT(*) FROM Users WHERE Email = @email";
+                    string query = "UPDATE Users SET MatKhau = @pass WHERE Email = @email";
                     using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
                         cmd.Parameters.AddWithValue("@email", email);
@@ -48,6 +49,7 @@ namespace Presentation
                         if (count > 0) emailExists = true;
                     }
                 }
+                // KẾT THÚC COPY
             }
             catch (Exception ex)
             {

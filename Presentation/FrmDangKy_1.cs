@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,24 +43,22 @@ namespace Presentation
             // --- ĐOẠN CODE MỚI THÊM: KIỂM TRA EMAIL TRÙNG ---
             try
             {
-                using (System.Data.SqlClient.SqlConnection cn = Db.Open()) // Dùng class Db kết nối
+                // BẮT ĐẦU COPY ĐOẠN NÀY
+                using (SqlConnection cn = Db.Open())
                 {
-                    // Đếm xem có bao nhiêu người dùng email này
                     string query = "SELECT COUNT(*) FROM Users WHERE Email = @email";
-
-                    using (System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(query, cn))
+                    using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
                         cmd.Parameters.AddWithValue("@email", email);
-
-                        int count = (int)cmd.ExecuteScalar(); // Lấy kết quả đếm
-
-                        if (count > 0) // Nếu tìm thấy ( > 0)
+                        int count = (int)cmd.ExecuteScalar();
+                        if (count > 0)
                         {
                             MessageBox.Show("Email này đã được đăng ký tài khoản rồi!\nVui lòng dùng Email khác hoặc Đăng nhập.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // Dừng ngay, KHÔNG gửi OTP nữa
+                            return;
                         }
                     }
                 }
+                // KẾT THÚC COPY
             }
             catch (Exception ex)
             {
