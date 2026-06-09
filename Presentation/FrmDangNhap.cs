@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Presentation
 {
@@ -17,6 +18,7 @@ namespace Presentation
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
         }
 
         private void gdDangNhap_Load(object sender, EventArgs e)
@@ -43,70 +45,60 @@ namespace Presentation
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = txtUser.Text.Trim();
-            string pass = txtPass.Text.Trim();
+            string username = txtUser.Text.Trim(); // Nhớ check đúng tên control txt của bạn
+            string password = txtPass.Text.Trim();
 
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Vui lòng nhập Email và Mật khẩu!");
+                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
-            {
-                // Kiểm tra trong CSDL
-                using (SqlConnection cn = Db.Open()) // Giả sử bạn đã có class Db kết nối SQL
-                {
-                    // Câu lệnh tìm user có Email và Pass trùng khớp
-                    string query = "SELECT UserId, FullName FROM Users WHERE Email = @email AND Password = @pass";
+            string query = "SELECT Role, FullName FROM Users WHERE Username = @User AND Password = @Pass";
 
-                    using (SqlCommand cmd = new SqlCommand(query, cn))
+            // Use a connection string from App.config/Web.config instead of the missing Infracstructure helper
+            string connStr = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
+            if (string.IsNullOrEmpty(connStr))
+            {
+                MessageBox.Show("Connection string 'DefaultConnection' not found in configuration.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@pass", pass);
+                        cmd.Parameters.AddWithValue("@User", username);
+                        cmd.Parameters.AddWithValue("@Pass", password);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Nếu tìm thấy (Đăng nhập thành công)
+                            if (reader.Read()) // Đăng nhập thành công
                             {
-                                int userId = Convert.ToInt32(reader["UserId"]);
-                                string name = reader["FullName"].ToString();
+                                string quyen = reader["Role"].ToString();
+                                string hoTen = reader["FullName"].ToString();
 
-                                // 1. Cập nhật User ID
-                                FrmMain.CurrentUserId = userId;
+                                MessageBox.Show($"Xin chào {hoTen}!\nBạn đang đăng nhập với quyền: {quyen}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                MessageBox.Show("Đăng nhập thành công! Xin chào " + name);
-
-                                // 2. Ẩn form đăng nhập đi
-                                
-
-                                // 3. Khởi tạo và mở Form1 theo dạng HỘP THOẠI (Dialog)
+                                // Mở Form Main và ẩn Form Đăng Nhập
                                 FrmMain frmMain = new FrmMain();
-                                frmMain.StartPosition = FormStartPosition.CenterScreen;
+                                frmMain.Show();
                                 this.Hide();
-                                
-
-                                // --- DÒNG QUAN TRỌNG NHẤT ---
-                                // Code sẽ dừng ở dòng này cho đến khi bạn Đăng xuất (tức là khi Form1 bị đóng)
-                                frmMain.ShowDialog();
-
-                                // 4. Khi Form1 đóng lại, dòng này mới chạy -> Tự hiện lại form Đăng nhập cũ
-                                this.Show();
-
-                                // (Tùy chọn) Xóa mật khẩu cũ đi cho an toàn
-                                txtPass.Text = "";
                             }
-                            else
+                            else // Sai tài khoản
                             {
-                                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kết nối SQL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

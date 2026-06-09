@@ -53,6 +53,11 @@ namespace Presentation
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.DoubleBuffered = true;
+            if (btnBanHang != null) btnBanHang.Click += btnBanHang_Click;
+            if (btnSanPham != null) btnSanPham.Click += btnSanPham_Click;
+            // Bổ sung các nút khác theo tên Control trong Designer của bạn
+            if (btnKhoHang != null) btnKhoHang.Click += btnKhoHang_Click;
+            if (Logout != null) Logout.Click += Logout_Click;
         }
 
         ////////////////////////////////////////////////////////////////////////////////// TEST GIỎ HÀNG
@@ -154,39 +159,6 @@ namespace Presentation
         private Form _activeChild;
 
 
-
-
-
-
-
-        
-
-        ////////////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////
-
-
-
-
-        
-
-        private Image LoadImageNoLock(string path)
-        {
-            using (var temp = Image.FromFile(path))
-            {
-                return new Bitmap(temp);
-            }
-        }
-
-
-
-
-
-
-
-
-
-        // ===== 4) RESIZE =====
 
 
         // ===== 5) giảm flicker cho Panel =====
@@ -494,7 +466,8 @@ namespace Presentation
 
         private void btnSanPham_Click(object sender, EventArgs e)
         {
-
+            SetActiveMenuButton(btnSanPham);
+            OpenChildForm(new FrmSanPham());
         }
 
         private void label16_Click_1(object sender, EventArgs e)
@@ -507,6 +480,13 @@ namespace Presentation
             this.Hide();
             FrmDangNhap login = new FrmDangNhap();
             login.Show();
+        }
+
+        private void btnKhoHang_Click(object sender, EventArgs e)
+        {
+            SetActiveMenuButton(btnKhoHang);
+            // OpenChildForm(new FrmKhoHang()); // Khi nào làm tới form kho sẽ mở dòng này
+            MessageBox.Show("Màn hình Quản lý Kho Hàng đang được cấu hình!", "Thông báo");
         }
     }
 }
