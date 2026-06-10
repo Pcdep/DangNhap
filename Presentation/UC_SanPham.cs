@@ -39,7 +39,7 @@ namespace Presentation
             lblGiaSP.Text = giaSP.ToString("N0") + " VNĐ";
 
             // 2. Code tự động tìm và nạp hình ảnh
-            string imagePath = Application.StartupPath + "\\Images\\" + maSP + ".jpg";
+            string imagePath = System.Windows.Forms.Application.StartupPath + "\\Images\\" + maSP + ".jpg";
             if (System.IO.File.Exists(imagePath))
             {
                 using (System.IO.FileStream fs = new System.IO.FileStream(imagePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))

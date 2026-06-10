@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Services;
+using Domain;
+using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Presentation
 {
@@ -159,66 +163,60 @@ namespace Presentation
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra xem người dùng đã chọn sản phẩm chưa
-            if (string.IsNullOrEmpty(txtMaSP.Text))
-            {
-                MessageBox.Show("Vui lòng chọn một sản phẩm từ bảng để lưu!", "Thông báo");
-                return;
-            }
-
             try
             {
-                // 2. CẬP NHẬT DỮ LIỆU CHỮ VÀO SQL
-                using (SqlConnection conn = Db.Open())
+                // 1. Kiểm tra rỗng (Validation bắt buộc)
+                if (string.IsNullOrWhiteSpace(txtMaSP.Text) || string.IsNullOrWhiteSpace(txtTenSP.Text))
                 {
-                    string query = "UPDATE SanPham SET TenSP = @TenSP, GiaBan = @GiaBan, TrangThai = @TrangThai WHERE MaSP = @MaSP";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaSP", txtMaSP.Text);
-                        cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text);
-
-                        // Lọc bỏ dấu phẩy phân cách hàng nghìn (nếu có) trước khi đẩy vào SQL
-                        string gia = txtGiaBan.Text.Replace(",", "").Replace(".", "");
-                        cmd.Parameters.AddWithValue("@GiaBan", Convert.ToDecimal(gia));
-
-                        cmd.Parameters.AddWithValue("@TrangThai", tsTrangThai.Checked);
-
-                        cmd.ExecuteNonQuery();
-                    }
+                    MessageBox.Show("Vui lòng nhập đầy đủ Mã và Tên sản phẩm trước khi khai sinh!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                // 3. XỬ LÝ LƯU ẢNH VÀO Ổ CỨNG MÁY TÍNH
-                if (!string.IsNullOrEmpty(duDuongDanAnhSelected))
+                // 2. Xử lý Giá Bán an toàn (Chống crash khi để trống hoặc gõ chữ)
+                decimal giaBanAnToan = 0;
+                if (!string.IsNullOrWhiteSpace(txtGiaBan.Text))
                 {
-                    // Tạo thư mục "Images" nằm ngay bên trong thư mục chạy của phần mềm
-                    string folderPath = Application.StartupPath + "\\Images";
-                    if (!System.IO.Directory.Exists(folderPath))
-                    {
-                        System.IO.Directory.CreateDirectory(folderPath);
-                    }
-
-                    // Đổi tên ảnh thành Mã Sản Phẩm (VD: SP01.jpg) và chép vào thư mục
-                    string destPath = folderPath + "\\" + txtMaSP.Text + ".jpg";
-                    System.IO.File.Copy(duDuongDanAnhSelected, destPath, true); // true: cho phép ghi đè ảnh cũ
-
-                    duDuongDanAnhSelected = ""; // Reset lại biến đường dẫn
+                    // Xóa dấu phẩy định dạng (nếu có) và thử ép kiểu an toàn
+                    string gia = txtGiaBan.Text.Replace(",", "").Replace(".", "");
+                    decimal.TryParse(gia, out giaBanAnToan);
                 }
 
-                MessageBox.Show("Cập nhật thông tin sản phẩm thành công!", "Thành công");
+                // 3. Đóng gói dữ liệu vào Entity (Tầng Domain)
+                SanPham spMoi = new SanPham();
+                spMoi.MaSP = txtMaSP.Text;
+                spMoi.TenSP = txtTenSP.Text;
+                spMoi.GiaBan = giaBanAnToan;
+                spMoi.SoLuongTon = 0; // Khai sinh mặc định bằng 0 vì hàng chưa về kho
+                spMoi.TrangThai = tsTrangThai.Checked;
 
-                // Tải lại bảng để thấy trạng thái mới được cập nhật
+                // 4. Gọi UseCase thực thi (Tầng Application)
+                ThemSanPhamUseCase useCase = new ThemSanPhamUseCase();
+                useCase.Execute(spMoi);
+
+                MessageBox.Show("Khai sinh sản phẩm mới thành công!", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 5. Nạp lại bảng dữ liệu để hiển thị ngay sản phẩm vừa thêm
                 LoadDanhSachSanPhamGrid();
+            }
+            catch (SqlException sqlEx)
+            {
+                // 2627 là mã lỗi kinh điển của SQL Server khi bị trùng Khóa chính (Primary Key)
+                if (sqlEx.Number == 2627)
+                {
+                    MessageBox.Show("Mã sản phẩm này đã tồn tại trong danh mục! Vui lòng tự gõ một Mã SP khác.", "Lỗi trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi CSDL: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message, "Lỗi hệ thống");
+                MessageBox.Show("Lỗi hệ thống không xác định: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+    }
 
     }
 
-
-
-
-}
 

@@ -9,9 +9,10 @@ namespace Presentation
         [STAThread]
         static void Main()
         {
-           
-            ApplicationConfiguration.Initialize();
-            Application.Run(new FrmMain());
+
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.Run(new FrmMain());
         }
     }
 }

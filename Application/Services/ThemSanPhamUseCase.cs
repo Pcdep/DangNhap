@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain;
+using Domain.Entities;
 using Infracstructure;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,18 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class LayDanhSachSanPhamUseCase
+    public class ThemSanPhamUseCase
     {
         private SanPhamRepository _repository;
 
-        public LayDanhSachSanPhamUseCase()
+        public ThemSanPhamUseCase()
         {
             _repository = new SanPhamRepository();
         }
 
-        // Lấy danh sách ném lên cho Presentation
-        public List<SanPham> Execute()
+        public void Execute(SanPham sp)
         {
-            return _repository.LayDanhSachSanPhamDangBan();
+            _repository.ThemSanPham(sp);
         }
     }
 }

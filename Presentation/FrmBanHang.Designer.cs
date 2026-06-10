@@ -56,14 +56,14 @@
             flpSanPham.Controls.Add(label16);
             flpSanPham.Location = new Point(0, 0);
             flpSanPham.Name = "flpSanPham";
-            flpSanPham.Size = new Size(1036, 823);
+            flpSanPham.Size = new Size(960, 790);
             flpSanPham.TabIndex = 41;
             // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1035, 835);
+            ClientSize = new Size(960, 790);
             Controls.Add(flpSanPham);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmBanHang";

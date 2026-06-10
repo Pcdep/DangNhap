@@ -384,6 +384,7 @@
             // 
             // Logout
             // 
+            Logout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Logout.Animated = true;
             Logout.BackColor = Color.Transparent;
             Logout.BorderRadius = 10;
@@ -400,7 +401,7 @@
             Logout.ForeColor = Color.DarkGray;
             Logout.HoverState.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Logout.HoverState.ForeColor = Color.FromArgb(247, 86, 130);
-            Logout.Location = new Point(895, 3);
+            Logout.Location = new Point(904, 11);
             Logout.Name = "Logout";
             Logout.ShadowDecoration.CustomizableEdges = customizableEdges22;
             Logout.Size = new Size(55, 55);
@@ -411,6 +412,7 @@
             // 
             // guna2TextBox1
             // 
+            guna2TextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             guna2TextBox1.Animated = true;
             guna2TextBox1.AutoRoundedCorners = true;
             guna2TextBox1.BackColor = Color.FromArgb(251, 221, 233);
@@ -455,9 +457,10 @@
             // 
             // pnlTrangChinh
             // 
+            pnlTrangChinh.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlTrangChinh.Location = new Point(315, 72);
             pnlTrangChinh.Name = "pnlTrangChinh";
-            pnlTrangChinh.Size = new Size(961, 781);
+            pnlTrangChinh.Size = new Size(960, 790);
             pnlTrangChinh.TabIndex = 26;
             // 
             // FrmMain
