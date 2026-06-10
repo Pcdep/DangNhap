@@ -16,11 +16,14 @@ namespace Presentation
         public int SoLuongChon { get; private set; }
         public string HanhDong { get; private set; }
 
-        public FrmChiTietSanPham(string tenSP, decimal giaSP)
+        private string maSP_DuocChon = "";
+
+        public FrmChiTietSanPham(string tenSP, decimal giaBan, string maSP)
         {
             InitializeComponent();
             lblTenSP.Text = tenSP;
-            lblGiaSP.Text = giaSP.ToString("N0") + " VNĐ";
+            lblGiaSP.Text = giaBan.ToString("N0") + " VNĐ";
+            maSP_DuocChon = maSP;
         }
 
         private void btnThemGioHang_Click(object sender, EventArgs e)

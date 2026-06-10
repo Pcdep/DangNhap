@@ -45,18 +45,17 @@ namespace Presentation
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtTenDangNhap.Text.Trim();
-            string password = txtMatKhau.Text.Trim();
+            string email = txtUser.Text.Trim();
+            string pass = txtPass.Text.Trim();
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
             {
                 MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu!", "Thông báo");
                 return;
             }
 
-            // Câu lệnh chuẩn hóa theo tên cột mới trong CSDL
-            string query = "SELECT Quyen, HoTen FROM Users WHERE TaiKhoan = @User AND MatKhau = @Pass";
-
+            string query = "SELECT UserId, FullName FROM Users WHERE Email = @email AND Password = @pass";
+            MessageBox.Show("Câu lệnh chuẩn bị chạy là:\n" + query, "Test Câu Lệnh");
             try
             {
                 // BẮT ĐẦU COPY ĐOẠN NÀY DÁN ĐÈ VÀO
@@ -64,17 +63,18 @@ namespace Presentation
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@User", username);
-                        cmd.Parameters.AddWithValue("@Pass", password);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@pass", pass);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                string quyen = reader["Quyen"].ToString();
-                                string hoTen = reader["HoTen"].ToString();
+                                // 2. Lấy dữ liệu cũng bằng tên Tiếng Anh
+                                int userId = Convert.ToInt32(reader["UserId"]);
+                                string name = reader["FullName"].ToString();
 
-                                MessageBox.Show($"Xin chào {hoTen}!\nQuyền: {quyen}", "Thành công");
+                              
 
                                 FrmMain main = new FrmMain();
                                 main.Show();

@@ -45,8 +45,10 @@ namespace Presentation
                 using (SqlConnection cn = Db.Open())
                 {
                     string email = EmailService.UserEmail;
-                    string query = @"INSERT INTO Users (TaiKhoan, HoTen, Email, SDT, MatKhau, Quyen) 
-                         VALUES (@email, @name, @email, @phone, @pass, 'User')";
+
+                    // Thay đổi toàn bộ tên cột thành Tiếng Anh: Username, FullName, Email, Phone, Password, Role
+                    string query = @"INSERT INTO Users (Username, FullName, Email, Phone, Password, Role) 
+                     VALUES (@email, @name, @email, @phone, @pass, 'User')";
 
                     using (SqlCommand cmd = new SqlCommand(query, cn))
                     {

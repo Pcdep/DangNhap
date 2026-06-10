@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSanPham));
             pnlDanhSach = new Panel();
-            pnlChiTiet = new Panel();
             dgvSanPham = new Guna.UI2.WinForms.Guna2DataGridView();
             colMaSP = new DataGridViewTextBoxColumn();
             colTenSP = new DataGridViewTextBoxColumn();
             colGiaBan = new DataGridViewTextBoxColumn();
             colTonKho = new DataGridViewTextBoxColumn();
             colTrangThai = new DataGridViewTextBoxColumn();
-            picSanPham = new PictureBox();
-            btnChonAnh = new Guna.UI2.WinForms.Guna2Button();
-            txtMaSP = new TextBox();
-            txtTenSP = new TextBox();
-            txtGiaBan = new TextBox();
-            txtTonKho = new TextBox();
-            tsTrangThai = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            btnThem = new Button();
-            btnLuu = new Button();
-            btnXoa = new Button();
+            pnlChiTiet = new Panel();
             btnBoQua = new Button();
+            btnXoa = new Button();
+            btnLuu = new Button();
+            btnThem = new Button();
+            tsTrangThai = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            txtSoLuongTon = new TextBox();
+            txtGiaBan = new TextBox();
+            txtTenSP = new TextBox();
+            txtMaSP = new TextBox();
+            btnChonAnh = new Guna.UI2.WinForms.Guna2Button();
+            picHinhAnh = new PictureBox();
             pnlDanhSach.SuspendLayout();
-            pnlChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picSanPham).BeginInit();
+            pnlChiTiet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).BeginInit();
             SuspendLayout();
             // 
             // pnlDanhSach
@@ -69,46 +69,29 @@
             pnlDanhSach.Size = new Size(891, 307);
             pnlDanhSach.TabIndex = 0;
             // 
-            // pnlChiTiet
-            // 
-            pnlChiTiet.Controls.Add(btnBoQua);
-            pnlChiTiet.Controls.Add(btnXoa);
-            pnlChiTiet.Controls.Add(btnLuu);
-            pnlChiTiet.Controls.Add(btnThem);
-            pnlChiTiet.Controls.Add(tsTrangThai);
-            pnlChiTiet.Controls.Add(txtTonKho);
-            pnlChiTiet.Controls.Add(txtGiaBan);
-            pnlChiTiet.Controls.Add(txtTenSP);
-            pnlChiTiet.Controls.Add(txtMaSP);
-            pnlChiTiet.Controls.Add(btnChonAnh);
-            pnlChiTiet.Controls.Add(picSanPham);
-            pnlChiTiet.Location = new Point(48, 351);
-            pnlChiTiet.Name = "pnlChiTiet";
-            pnlChiTiet.Size = new Size(891, 240);
-            pnlChiTiet.TabIndex = 1;
-            // 
             // dgvSanPham
             // 
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dgvSanPham.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dgvSanPham.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dgvSanPham.ColumnHeadersHeight = 27;
+            dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvSanPham.Columns.AddRange(new DataGridViewColumn[] { colMaSP, colTenSP, colGiaBan, colTonKho, colTrangThai });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvSanPham.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvSanPham.DefaultCellStyle = dataGridViewCellStyle6;
             dgvSanPham.Dock = DockStyle.Fill;
             dgvSanPham.GridColor = Color.FromArgb(231, 229, 255);
             dgvSanPham.Location = new Point(0, 0);
@@ -119,7 +102,6 @@
             dgvSanPham.TabIndex = 0;
             dgvSanPham.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvSanPham.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            dgvSanPham.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSanPham.ThemeStyle.HeaderStyle.Height = 27;
             dgvSanPham.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
             dgvSanPham.ThemeStyle.RowsStyle.Height = 33;
@@ -154,98 +136,32 @@
             colTrangThai.MinimumWidth = 8;
             colTrangThai.Name = "colTrangThai";
             // 
-            // picSanPham
+            // pnlChiTiet
             // 
-            picSanPham.Location = new Point(22, 17);
-            picSanPham.Name = "picSanPham";
-            picSanPham.Size = new Size(174, 160);
-            picSanPham.TabIndex = 0;
-            picSanPham.TabStop = false;
+            pnlChiTiet.Controls.Add(btnBoQua);
+            pnlChiTiet.Controls.Add(btnXoa);
+            pnlChiTiet.Controls.Add(btnLuu);
+            pnlChiTiet.Controls.Add(btnThem);
+            pnlChiTiet.Controls.Add(tsTrangThai);
+            pnlChiTiet.Controls.Add(txtSoLuongTon);
+            pnlChiTiet.Controls.Add(txtGiaBan);
+            pnlChiTiet.Controls.Add(txtTenSP);
+            pnlChiTiet.Controls.Add(txtMaSP);
+            pnlChiTiet.Controls.Add(btnChonAnh);
+            pnlChiTiet.Controls.Add(picHinhAnh);
+            pnlChiTiet.Location = new Point(48, 351);
+            pnlChiTiet.Name = "pnlChiTiet";
+            pnlChiTiet.Size = new Size(891, 240);
+            pnlChiTiet.TabIndex = 1;
             // 
-            // btnChonAnh
+            // btnBoQua
             // 
-            btnChonAnh.CustomizableEdges = customizableEdges3;
-            btnChonAnh.DisabledState.BorderColor = Color.DarkGray;
-            btnChonAnh.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnChonAnh.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnChonAnh.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnChonAnh.Font = new Font("Segoe UI", 9F);
-            btnChonAnh.ForeColor = Color.White;
-            btnChonAnh.Location = new Point(22, 183);
-            btnChonAnh.Name = "btnChonAnh";
-            btnChonAnh.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnChonAnh.Size = new Size(174, 45);
-            btnChonAnh.TabIndex = 1;
-            btnChonAnh.Text = "Chọn ảnh";
-            // 
-            // txtMaSP
-            // 
-            txtMaSP.Location = new Point(233, 35);
-            txtMaSP.Name = "txtMaSP";
-            txtMaSP.ReadOnly = true;
-            txtMaSP.Size = new Size(150, 31);
-            txtMaSP.TabIndex = 2;
-            txtMaSP.Text = "Mã sản phẩm";
-            // 
-            // txtTenSP
-            // 
-            txtTenSP.Location = new Point(233, 91);
-            txtTenSP.Name = "txtTenSP";
-            txtTenSP.Size = new Size(150, 31);
-            txtTenSP.TabIndex = 3;
-            txtTenSP.Text = "Tên mỹ phẩm";
-            // 
-            // txtGiaBan
-            // 
-            txtGiaBan.Location = new Point(233, 146);
-            txtGiaBan.Name = "txtGiaBan";
-            txtGiaBan.Size = new Size(150, 31);
-            txtGiaBan.TabIndex = 4;
-            txtGiaBan.Text = "Giá bán";
-            // 
-            // txtTonKho
-            // 
-            txtTonKho.Location = new Point(545, 35);
-            txtTonKho.Name = "txtTonKho";
-            txtTonKho.ReadOnly = true;
-            txtTonKho.Size = new Size(150, 31);
-            txtTonKho.TabIndex = 5;
-            txtTonKho.Text = "Số lượng tồn";
-            // 
-            // tsTrangThai
-            // 
-            tsTrangThai.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            tsTrangThai.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            tsTrangThai.CheckedState.InnerBorderColor = Color.White;
-            tsTrangThai.CheckedState.InnerColor = Color.White;
-            tsTrangThai.CustomizableEdges = customizableEdges1;
-            tsTrangThai.Location = new Point(824, 17);
-            tsTrangThai.Name = "tsTrangThai";
-            tsTrangThai.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            tsTrangThai.Size = new Size(52, 30);
-            tsTrangThai.TabIndex = 6;
-            tsTrangThai.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            tsTrangThai.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            tsTrangThai.UncheckedState.InnerBorderColor = Color.White;
-            tsTrangThai.UncheckedState.InnerColor = Color.White;
-            // 
-            // btnThem
-            // 
-            btnThem.Location = new Point(509, 113);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(115, 45);
-            btnThem.TabIndex = 7;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
-            // 
-            // btnLuu
-            // 
-            btnLuu.Location = new Point(662, 113);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(96, 45);
-            btnLuu.TabIndex = 8;
-            btnLuu.Text = "Lưu";
-            btnLuu.UseVisualStyleBackColor = true;
+            btnBoQua.Location = new Point(662, 172);
+            btnBoQua.Name = "btnBoQua";
+            btnBoQua.Size = new Size(96, 45);
+            btnBoQua.TabIndex = 10;
+            btnBoQua.Text = "Bỏ Qua";
+            btnBoQua.UseVisualStyleBackColor = true;
             // 
             // btnXoa
             // 
@@ -256,14 +172,99 @@
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
             // 
-            // btnBoQua
+            // btnLuu
             // 
-            btnBoQua.Location = new Point(662, 172);
-            btnBoQua.Name = "btnBoQua";
-            btnBoQua.Size = new Size(96, 45);
-            btnBoQua.TabIndex = 10;
-            btnBoQua.Text = "Bỏ Qua";
-            btnBoQua.UseVisualStyleBackColor = true;
+            btnLuu.Location = new Point(662, 113);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Size = new Size(96, 45);
+            btnLuu.TabIndex = 8;
+            btnLuu.Text = "Lưu";
+            btnLuu.UseVisualStyleBackColor = true;
+            // 
+            // btnThem
+            // 
+            btnThem.Location = new Point(509, 113);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(115, 45);
+            btnThem.TabIndex = 7;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            // 
+            // tsTrangThai
+            // 
+            tsTrangThai.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            tsTrangThai.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            tsTrangThai.CheckedState.InnerBorderColor = Color.White;
+            tsTrangThai.CheckedState.InnerColor = Color.White;
+            tsTrangThai.CustomizableEdges = customizableEdges5;
+            tsTrangThai.Location = new Point(824, 17);
+            tsTrangThai.Name = "tsTrangThai";
+            tsTrangThai.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            tsTrangThai.Size = new Size(52, 30);
+            tsTrangThai.TabIndex = 6;
+            tsTrangThai.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            tsTrangThai.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            tsTrangThai.UncheckedState.InnerBorderColor = Color.White;
+            tsTrangThai.UncheckedState.InnerColor = Color.White;
+            // 
+            // txtSoLuongTon
+            // 
+            txtSoLuongTon.Location = new Point(545, 35);
+            txtSoLuongTon.Name = "txtSoLuongTon";
+            txtSoLuongTon.ReadOnly = true;
+            txtSoLuongTon.Size = new Size(150, 31);
+            txtSoLuongTon.TabIndex = 5;
+            txtSoLuongTon.Text = "Số lượng tồn";
+            // 
+            // txtGiaBan
+            // 
+            txtGiaBan.Location = new Point(233, 146);
+            txtGiaBan.Name = "txtGiaBan";
+            txtGiaBan.Size = new Size(150, 31);
+            txtGiaBan.TabIndex = 4;
+            txtGiaBan.Text = "Giá bán";
+            // 
+            // txtTenSP
+            // 
+            txtTenSP.Location = new Point(233, 91);
+            txtTenSP.Name = "txtTenSP";
+            txtTenSP.Size = new Size(150, 31);
+            txtTenSP.TabIndex = 3;
+            txtTenSP.Text = "Tên mỹ phẩm";
+            // 
+            // txtMaSP
+            // 
+            txtMaSP.Location = new Point(233, 35);
+            txtMaSP.Name = "txtMaSP";
+            txtMaSP.ReadOnly = true;
+            txtMaSP.Size = new Size(150, 31);
+            txtMaSP.TabIndex = 2;
+            txtMaSP.Text = "Mã sản phẩm";
+            // 
+            // btnChonAnh
+            // 
+            btnChonAnh.CustomizableEdges = customizableEdges7;
+            btnChonAnh.DisabledState.BorderColor = Color.DarkGray;
+            btnChonAnh.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnChonAnh.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnChonAnh.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnChonAnh.Font = new Font("Segoe UI", 9F);
+            btnChonAnh.ForeColor = Color.White;
+            btnChonAnh.Location = new Point(22, 183);
+            btnChonAnh.Name = "btnChonAnh";
+            btnChonAnh.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnChonAnh.Size = new Size(174, 45);
+            btnChonAnh.TabIndex = 1;
+            btnChonAnh.Text = "Chọn ảnh";
+            btnChonAnh.Click += btnChonAnh_Click;
+            // 
+            // picHinhAnh
+            // 
+            picHinhAnh.Location = new Point(22, 17);
+            picHinhAnh.Name = "picHinhAnh";
+            picHinhAnh.Size = new Size(174, 160);
+            picHinhAnh.TabIndex = 0;
+            picHinhAnh.TabStop = false;
             // 
             // FrmSanPham
             // 
@@ -278,10 +279,10 @@
             Name = "FrmSanPham";
             Text = "FrmSanPham";
             pnlDanhSach.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
             pnlChiTiet.ResumeLayout(false);
             pnlChiTiet.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picSanPham).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).EndInit();
             ResumeLayout(false);
         }
 
@@ -297,8 +298,8 @@
         private Panel pnlChiTiet;
         private TextBox txtMaSP;
         private Guna.UI2.WinForms.Guna2Button btnChonAnh;
-        private PictureBox picSanPham;
-        private TextBox txtTonKho;
+        private PictureBox picHinhAnh;
+        private TextBox txtSoLuongTon;
         private TextBox txtGiaBan;
         private TextBox txtTenSP;
         private Button btnBoQua;

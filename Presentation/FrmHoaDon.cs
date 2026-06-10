@@ -34,6 +34,10 @@ namespace Presentation
             lblTongTien.Text = tongTien.ToString("N0") + " VNĐ";
         }
 
+        public FrmHoaDon()
+        {
+        }
+
         private void btnInHoaDon_Click(object sender, EventArgs e)
         {
             // Tạm thời giả lập lệnh in (Sau này kết nối máy in thật sẽ tính sau)
