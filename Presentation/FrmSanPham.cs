@@ -23,7 +23,6 @@ namespace Presentation
                 dgvSanPham.CellClick += DgvSanPham_CellClick;
             }
 
-            LoadDuLieuGiaLap();
         }
 
         private void LoadDuLieuGiaLap()
