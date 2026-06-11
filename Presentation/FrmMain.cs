@@ -56,8 +56,13 @@ namespace Presentation
             if (btnBanHang != null) btnBanHang.Click += btnBanHang_Click;
             if (btnSanPham != null) btnSanPham.Click += btnSanPham_Click;
             // Bổ sung các nút khác theo tên Control trong Designer của bạn
-            if (btnKhoHang != null) btnKhoHang.Click += btnKhoHang_Click;
+            
             if (Logout != null) Logout.Click += Logout_Click;
+
+            if (btnKhoHang != null)
+            {
+                btnKhoHang.Click += new EventHandler(btnKhoHang_Click);
+            }
         }
 
         ////////////////////////////////////////////////////////////////////////////////// TEST GIỎ HÀNG
@@ -485,8 +490,7 @@ namespace Presentation
         private void btnKhoHang_Click(object sender, EventArgs e)
         {
             SetActiveMenuButton(btnKhoHang);
-            // OpenChildForm(new FrmKhoHang()); // Khi nào làm tới form kho sẽ mở dòng này
-            MessageBox.Show("Màn hình Quản lý Kho Hàng đang được cấu hình!", "Thông báo");
+            OpenChildForm(new FrmKhoHang());
         }
     }
 }

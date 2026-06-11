@@ -42,6 +42,7 @@ namespace Presentation
         }
 
 
+        private bool isThemMoi = false;
 
         private void DgvSanPham_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -65,28 +66,36 @@ namespace Presentation
 
         private void DgvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgvSanPham.Rows[e.RowIndex].DataBoundItem is SanPham sp)
             {
+                isThemMoi = false;
+                txtMaSP.Text = sp.MaSP;
+                txtTenSP.Text = sp.TenSP;
+
                 DataGridViewRow row = dgvSanPham.Rows[e.RowIndex];
-
-                // Đổ dữ liệu chữ vào các TextBox dựa theo thứ tự cột lúc thêm vào lưới
-                if (txtMaSP != null) txtMaSP.Text = row.Cells[0].Value?.ToString();
+                if (txtMaSP != null) { txtMaSP.Text = row.Cells[0].Value?.ToString(); txtMaSP.ReadOnly = true; } // Khóa mã lại không cho sửa
                 if (txtTenSP != null) txtTenSP.Text = row.Cells[1].Value?.ToString();
-
-                // Giá bán loại bỏ dấu phẩy phân cách định dạng nếu có trước khi nạp vào ô nhập
-                if (txtGiaBan != null)
-                    txtGiaBan.Text = row.Cells[2].Value?.ToString().Replace(",", "").Replace(".", "");
-
+                if (txtGiaBan != null) txtGiaBan.Text = row.Cells[2].Value?.ToString().Replace(",", "").Replace(".", "");
                 if (txtSoLuongTon != null) txtSoLuongTon.Text = row.Cells[3].Value?.ToString();
 
-                // Xử lý nút gạt trạng thái: Nếu chữ là "Đang bán" thì bật công tắc gạt (True), ngược lại tắt (False)
-                string tinhTrang = row.Cells[4].Value?.ToString();
-                if (tsTrangThai != null)
-                {
-                    tsTrangThai.Checked = (tinhTrang == "Đang bán");
-                }
+                if (txtThongTinSanPham != null) txtThongTinSanPham.Text = sp.ThongTinSanPham;
 
-                // Phần xử lý ảnh từ database hiển thị lên picHinhAnh sẽ bổ sung khi làm hàm lưu/tải ảnh
+                string tinhTrang = row.Cells[4].Value?.ToString();
+                if (tsTrangThai != null) tsTrangThai.Checked = (tinhTrang == "Đang bán");
+
+                // Code nạp ảnh từ thư mục Images
+                string imagePath = System.Windows.Forms.Application.StartupPath + "\\Images\\" + txtMaSP.Text + ".jpg";
+                if (System.IO.File.Exists(imagePath))
+                {
+                    using (System.IO.FileStream fs = new System.IO.FileStream(imagePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    {
+                        if (picHinhAnh != null) { picHinhAnh.Image = Image.FromStream(fs); picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom; }
+                    }
+                }
+                else
+                {
+                    if (picHinhAnh != null) picHinhAnh.Image = null;
+                }
             }
         }
 
@@ -130,6 +139,22 @@ namespace Presentation
             }
         }
 
+        private void LamMoiGiaoDien()
+        {
+            // Xóa trắng toàn bộ ô nhập liệu để chuẩn bị cho sản phẩm tiếp theo
+            if (txtMaSP != null) txtMaSP.Text = "";
+            if (txtTenSP != null) txtTenSP.Text = "";
+            if (txtGiaBan != null) txtGiaBan.Text = "";
+            if (txtSoLuongTon != null) txtSoLuongTon.Text = "0";
+
+            // Xóa hình ảnh hiện tại
+            if (picHinhAnh != null) picHinhAnh.Image = null;
+            duDuongDanAnhSelected = ""; // Reset đường dẫn ảnh
+
+            // Đưa con trỏ chuột nhấp nháy vào ô Mã SP
+            if (txtMaSP != null) txtMaSP.Focus();
+        }
+
         private void btnChonAnh_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -163,60 +188,113 @@ namespace Presentation
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+
             try
             {
-                // 1. Kiểm tra rỗng (Validation bắt buộc)
                 if (string.IsNullOrWhiteSpace(txtMaSP.Text) || string.IsNullOrWhiteSpace(txtTenSP.Text))
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ Mã và Tên sản phẩm trước khi khai sinh!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // 2. Xử lý Giá Bán an toàn (Chống crash khi để trống hoặc gõ chữ)
                 decimal giaBanAnToan = 0;
                 if (!string.IsNullOrWhiteSpace(txtGiaBan.Text))
                 {
-                    // Xóa dấu phẩy định dạng (nếu có) và thử ép kiểu an toàn
                     string gia = txtGiaBan.Text.Replace(",", "").Replace(".", "");
                     decimal.TryParse(gia, out giaBanAnToan);
                 }
 
-                // 3. Đóng gói dữ liệu vào Entity (Tầng Domain)
-                SanPham spMoi = new SanPham();
-                spMoi.MaSP = txtMaSP.Text;
-                spMoi.TenSP = txtTenSP.Text;
-                spMoi.GiaBan = giaBanAnToan;
-                spMoi.SoLuongTon = 0; // Khai sinh mặc định bằng 0 vì hàng chưa về kho
-                spMoi.TrangThai = tsTrangThai.Checked;
+                // Đóng gói dữ liệu vào Entity
+                SanPham sp = new SanPham();
+                sp.MaSP = txtMaSP.Text;
+                sp.TenSP = txtTenSP.Text;
+                sp.GiaBan = giaBanAnToan;
+                sp.SoLuongTon = Convert.ToInt32(txtSoLuongTon.Text); // Giữ nguyên số lượng tồn kho cũ
+                sp.TrangThai = tsTrangThai.Checked;
+                sp.ThongTinSanPham = txtThongTinSanPham.Text;
 
-                // 4. Gọi UseCase thực thi (Tầng Application)
-                ThemSanPhamUseCase useCase = new ThemSanPhamUseCase();
-                useCase.Execute(spMoi);
-
-                MessageBox.Show("Khai sinh sản phẩm mới thành công!", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // 5. Nạp lại bảng dữ liệu để hiển thị ngay sản phẩm vừa thêm
-                LoadDanhSachSanPhamGrid();
-            }
-            catch (SqlException sqlEx)
-            {
-                // 2627 là mã lỗi kinh điển của SQL Server khi bị trùng Khóa chính (Primary Key)
-                if (sqlEx.Number == 2627)
+                // 🎯 KIỂM TRA ĐIỀU KIỆN ĐỂ GỌI ĐÚNG USECASE
+                if (isThemMoi)
                 {
-                    MessageBox.Show("Mã sản phẩm này đã tồn tại trong danh mục! Vui lòng tự gõ một Mã SP khác.", "Lỗi trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Gọi UseCase THÊM MỚI
+                    ThemSanPhamUseCase themUseCase = new ThemSanPhamUseCase();
+                    themUseCase.Execute(sp);
+                    MessageBox.Show("Khai sinh sản phẩm mới thành công!", "Thông báo");
                 }
                 else
                 {
-                    MessageBox.Show("Lỗi CSDL: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Gọi UseCase CẬP NHẬT (SỬA)
+                    CapNhatSanPhamUseCase suaUseCase = new CapNhatSanPhamUseCase();
+                    suaUseCase.Execute(sp);
+                    MessageBox.Show("Cập nhật thông tin sản phẩm thành công!", "Thông báo");
                 }
+
+                // Xử lý copy lưu ảnh nếu có chọn ảnh mới
+                if (!string.IsNullOrEmpty(duDuongDanAnhSelected))
+                {
+                    string folderPath = System.Windows.Forms.Application.StartupPath + "\\Images";
+                    if (!System.IO.Directory.Exists(folderPath)) System.IO.Directory.CreateDirectory(folderPath);
+
+                    string destPath = folderPath + "\\" + txtMaSP.Text + ".jpg";
+                    System.IO.File.Copy(duDuongDanAnhSelected, destPath, true);
+                    duDuongDanAnhSelected = "";
+                }
+
+                // Nạp lại bảng dữ liệu và đưa form về trạng thái tĩnh
+                LoadDanhSachSanPhamGrid();
+                isThemMoi = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi hệ thống không xác định: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi hệ thống: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            LamMoiGiaoDien();
+            isThemMoi = true; // Bật cờ báo hệ thống chuẩn bị Thêm mới
+
+            if (txtMaSP != null) { txtMaSP.ReadOnly = false; txtMaSP.Text = ""; }
+            if (txtTenSP != null) txtTenSP.Text = "";
+            if (txtGiaBan != null) txtGiaBan.Text = "";
+            if (txtSoLuongTon != null) txtSoLuongTon.Text = "0";
+            if (tsTrangThai != null) tsTrangThai.Checked = true;
+            if (picHinhAnh != null) picHinhAnh.Image = null;
+            duDuongDanAnhSelected = "";
+
+            if (tsTrangThai != null)
+            {
+                tsTrangThai.Checked = false; // Ngừng kinh doanh
+            }
+            if (txtMaSP != null) txtMaSP.Focus();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBaoHetHang_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaSP.Text)) return;
+
+            try
+            {
+                string query = "UPDATE SanPham SET YeuCauNhap = 1 WHERE MaSP = '" + txtMaSP.Text + "'";
+                using (SqlConnection conn = Db.Open())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Đã gửi cảnh báo hết hàng đến bộ phận Kho!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
     }
 
-    }
+}
 
 
