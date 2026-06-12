@@ -52,7 +52,7 @@ namespace Infracstructure
                                 cmdUp.Parameters.AddWithValue("@MaSP", ct.MaSP);
                                 cmdUp.Parameters.AddWithValue("@SoLuongNhap", ct.SoLuongNhap);
                                 cmdUp.Parameters.AddWithValue("@NgayNhapCuoi", pn.NgayNhap);
-                                cmdUp.Parameters.AddWithValue("@MaPNCuoi", pn.MaPN); // Lưu Mã phiếu nhập vào
+                                cmdUp.Parameters.AddWithValue("@MaPNCuoi", pn.MaPN);
                                 cmdUp.ExecuteNonQuery();
                             }
                         }

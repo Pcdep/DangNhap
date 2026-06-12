@@ -187,6 +187,7 @@
             btnHoTro.TextAlign = HorizontalAlignment.Left;
             btnHoTro.TextOffset = new Point(40, -2);
             btnHoTro.UseTransparentBackground = true;
+            btnHoTro.Click += btnHoTro_Click;
             // 
             // btnDoanhThu
             // 
@@ -297,6 +298,7 @@
             btnGioHang.TextAlign = HorizontalAlignment.Left;
             btnGioHang.TextOffset = new Point(40, -2);
             btnGioHang.UseTransparentBackground = true;
+            btnGioHang.Click += btnGioHang_Click;
             // 
             // btnSanPham
             // 

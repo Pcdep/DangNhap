@@ -20,7 +20,7 @@ namespace Application.Services
         // Lấy danh sách ném lên cho Presentation
         public List<SanPham> Execute()
         {
-            return _repository.LayDanhSachSanPhamDangBan();
+            return _repository.LayDanhSachSanPham();
         }
     }
 }

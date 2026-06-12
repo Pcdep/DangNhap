@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Presentation.FrmGioHang;
 
 namespace Presentation
 {
@@ -21,6 +22,17 @@ namespace Presentation
         {
             InitializeComponent();
             LoadSanPhamDong();
+
+            this.VisibleChanged += (sender, e) =>
+            {
+             
+                if (this.Visible == true)
+                {
+                    // Thì ngay lập tức load lại danh sách mới nhất
+                    LoadSanPhamDong();
+                }
+            };
+
         }
 
         private void Guna2GradientPanel_Paint(object sender, PaintEventArgs e)
@@ -44,7 +56,8 @@ namespace Presentation
 
                 // 1. GỌI TẦNG APPLICATION (Thay vì viết SQL trực tiếp)
                 LayDanhSachSanPhamUseCase useCase = new LayDanhSachSanPhamUseCase();
-                List<SanPham> danhSachSP = useCase.Execute();
+                List<Domain.Entities.SanPham> danhSachSP = useCase.Execute()
+            .Where(sp => sp.TrangThai == true && sp.SoLuongTon > 0).ToList();
 
                 // 2. DUYỆT DANH SÁCH VÀ ĐỔ LÊN GIAO DIỆN
                 foreach (SanPham sp in danhSachSP)
@@ -52,18 +65,30 @@ namespace Presentation
                     UC_SanPham uc = new UC_SanPham();
                     uc.CapNhatDuLieu(sp.MaSP, sp.TenSP, sp.GiaBan);
 
+                    string pathAnh = System.Windows.Forms.Application.StartupPath + "\\Images\\" + sp.MaSP + ".jpg";
+
                     // SỰ KIỆN CLICK MỞ CHI TIẾT VÀ HÓA ĐƠN
                     uc.Click += (sender, e) =>
                     {
-                        FrmChiTietSanPham frmCT = new FrmChiTietSanPham(sp.TenSP, sp.GiaBan, sp.MaSP);
+                        FrmChiTietSanPham frmCT = new FrmChiTietSanPham(sp.TenSP, sp.GiaBan, sp.MaSP, pathAnh, sp.ThongTinSanPham);
 
                         // Đón tín hiệu OK từ Form Chi Tiết (như bạn đã làm)
                         if (frmCT.ShowDialog() == DialogResult.OK)
                         {
                             if (frmCT.HanhDong == "DatNgay")
                             {
-                                // Mở Form Hóa Đơn và truyền dữ liệu sang
-                                FrmHoaDon frmHD = new FrmHoaDon(sp.TenSP, frmCT.SoLuongChon, sp.GiaBan);
+                                LoadSanPhamDong();
+                                List<ItemGioHang> danhSachMuaNgay = new List<ItemGioHang>();
+                                ItemGioHang monHang = new ItemGioHang();
+                                monHang.MaSP = sp.MaSP;
+                                monHang.TenSP = sp.TenSP;
+                                monHang.SoLuong = frmCT.SoLuongChon;
+                                monHang.GiaBan = sp.GiaBan;
+                                danhSachMuaNgay.Add(monHang);
+                                decimal tongTienBill = monHang.ThanhTien;
+
+                                // 👉 4. BÂY GIỜ THÌ GỌI HÓA ĐƠN SẼ KHÔNG CÒN LỖI NỮA
+                                FrmHoaDon frmHD = new FrmHoaDon(danhSachMuaNgay, tongTienBill);
                                 frmHD.ShowDialog();
                             }
                         }

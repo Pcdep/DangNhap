@@ -36,25 +36,25 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            pictureBox1 = new PictureBox();
+            picHinhAnh = new PictureBox();
             lblTenSP = new Label();
             lblGiaSP = new Label();
             numSoLuong = new Guna.UI2.WinForms.Guna2NumericUpDown();
             btnThemGioHang = new Guna.UI2.WinForms.Guna2Button();
             btnDatNgay = new Guna.UI2.WinForms.Guna2Button();
             btnHuy = new Guna.UI2.WinForms.Guna2Button();
-            label2 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            lblThongTinSanPham = new Label();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSoLuong).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // picHinhAnh
             // 
-            pictureBox1.Location = new Point(33, 88);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(240, 217);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            picHinhAnh.Location = new Point(33, 88);
+            picHinhAnh.Name = "picHinhAnh";
+            picHinhAnh.Size = new Size(240, 217);
+            picHinhAnh.TabIndex = 0;
+            picHinhAnh.TabStop = false;
             // 
             // lblTenSP
             // 
@@ -141,35 +141,34 @@
             btnHuy.Text = "Tắt";
             btnHuy.Click += btnHuy_Click;
             // 
-            // label2
+            // lblThongTinSanPham
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(33, 354);
-            label2.Name = "label2";
-            label2.Size = new Size(262, 38);
-            label2.TabIndex = 8;
-            label2.Text = "Thông tin sản phẩm";
-            label2.Click += label2_Click;
+            lblThongTinSanPham.Font = new Font("Segoe UI", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblThongTinSanPham.Location = new Point(33, 354);
+            lblThongTinSanPham.Name = "lblThongTinSanPham";
+            lblThongTinSanPham.Size = new Size(942, 135);
+            lblThongTinSanPham.TabIndex = 8;
+            lblThongTinSanPham.Text = "Thông tin sản phẩm";
+            lblThongTinSanPham.Click += label2_Click;
             // 
             // FrmChiTietSanPham
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1011, 616);
-            Controls.Add(label2);
+            Controls.Add(lblThongTinSanPham);
             Controls.Add(btnHuy);
             Controls.Add(btnDatNgay);
             Controls.Add(btnThemGioHang);
             Controls.Add(numSoLuong);
             Controls.Add(lblGiaSP);
             Controls.Add(lblTenSP);
-            Controls.Add(pictureBox1);
+            Controls.Add(picHinhAnh);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmChiTietSanPham";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FrmChiTietSanPham";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSoLuong).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -177,13 +176,13 @@
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox picHinhAnh;
         private Label lblTenSP;
         private Label lblGiaSP;
         private Guna.UI2.WinForms.Guna2NumericUpDown numSoLuong;
         private Guna.UI2.WinForms.Guna2Button btnThemGioHang;
         private Guna.UI2.WinForms.Guna2Button btnDatNgay;
         private Guna.UI2.WinForms.Guna2Button btnHuy;
-        private Label label2;
+        private Label lblThongTinSanPham;
     }
 }

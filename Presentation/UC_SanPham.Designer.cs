@@ -50,7 +50,7 @@
             Guna2GradientPanel.FillColor2 = Color.FromArgb(200, 245, 245, 243);
             Guna2GradientPanel.ForeColor = Color.White;
             Guna2GradientPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            Guna2GradientPanel.Location = new Point(17, 26);
+            Guna2GradientPanel.Location = new Point(14, 26);
             Guna2GradientPanel.Margin = new Padding(2);
             Guna2GradientPanel.Name = "Guna2GradientPanel";
             Guna2GradientPanel.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -69,14 +69,13 @@
             // 
             // lblTenSP
             // 
-            lblTenSP.AutoSize = true;
             lblTenSP.BackColor = Color.Transparent;
             lblTenSP.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTenSP.ForeColor = Color.Black;
-            lblTenSP.Location = new Point(34, 234);
+            lblTenSP.Location = new Point(34, 223);
             lblTenSP.Margin = new Padding(2, 0, 2, 0);
             lblTenSP.Name = "lblTenSP";
-            lblTenSP.Size = new Size(198, 29);
+            lblTenSP.Size = new Size(198, 70);
             lblTenSP.TabIndex = 46;
             lblTenSP.Text = "Sữa rửa mặt N...";
             // 
@@ -86,7 +85,7 @@
             lblGiaSP.BackColor = Color.Transparent;
             lblGiaSP.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGiaSP.ForeColor = Color.Red;
-            lblGiaSP.Location = new Point(34, 275);
+            lblGiaSP.Location = new Point(34, 299);
             lblGiaSP.Margin = new Padding(2, 0, 2, 0);
             lblGiaSP.Name = "lblGiaSP";
             lblGiaSP.Size = new Size(119, 29);
@@ -100,7 +99,7 @@
             BackColor = Color.Transparent;
             Controls.Add(Guna2GradientPanel);
             Name = "UC_SanPham";
-            Size = new Size(298, 396);
+            Size = new Size(287, 396);
             Load += UC_SanPham_Load;
             Guna2GradientPanel.ResumeLayout(false);
             Guna2GradientPanel.PerformLayout();

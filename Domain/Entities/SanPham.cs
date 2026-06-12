@@ -18,6 +18,7 @@ namespace Domain.Entities
         public string MaPNCuoi { get; set; }
         public string ThongTinSanPham { get; set; }
         public bool YeuCauNhap { get; set; }
+        public string HinhAnh { get; set; }
 
         // =================================================================
         // --- BỔ SUNG CÁC THUỘC TÍNH MỚI THEO THIẾT KẾ GIAO DIỆN MỚI ---

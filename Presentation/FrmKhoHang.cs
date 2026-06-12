@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Domain.Entities;       // Gọi thực thể PhieuNhap, ChiTietPhieuNhap
 using Application.Services;  // Gọi ThemPhieuNhapUseCase và LayDanhSachSanPhamUseCase
+using Infracstructure.Services;
 
 namespace Presentation
 {
@@ -40,9 +41,10 @@ namespace Presentation
                 txtMaPN.ReadOnly = true;
             }
 
+
             // Nạp dữ liệu lên 2 Tab
             LoadTabDanhSachTong();
-
+            LoadLaiLuoiChoDuyet();
             ToMauCanhBaoHetHang();
             LoadComboNhaCungCap();
             CaiDatBangTamGrid();
@@ -57,7 +59,25 @@ namespace Presentation
             }
         }
 
+        private void LoadLaiLuoiChoDuyet()
+        {
+            try
+            {
+                // Gọi thẳng xuống Repository để lấy danh sách (Hoặc bạn có thể tạo UseCase trung gian nếu muốn chuẩn 100% 3 tầng)
+                Infracstructure.Services.PhieuTraRepository repo = new Infracstructure.Services.PhieuTraRepository();
 
+                if (dgvPhieuChoDuyet != null)
+                {
+                    dgvPhieuChoDuyet.AutoGenerateColumns = false; // Tắt tự sinh cột thừa
+                    dgvPhieuChoDuyet.DataSource = null;           // Xóa dữ liệu cũ
+                    dgvPhieuChoDuyet.DataSource = repo.LayDanhSachChoDuyet(); // Đổ dữ liệu mới vào
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách phiếu chờ duyệt: " + ex.Message, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void ToMauCanhBaoHetHang()
         {
             if (dgvDanhSachTongKho == null) return;
@@ -86,13 +106,11 @@ namespace Presentation
 
                 if (dgvDanhSachTongKho != null)
                 {
+                    dgvDanhSachTongKho.AutoGenerateColumns = false;
                     dgvDanhSachTongKho.DataSource = null;
                     dgvDanhSachTongKho.DataSource = ds;
 
-                    // Ẩn các cột không cần thiết
-                    if (dgvDanhSachTongKho.Columns["GiaBan"] != null) dgvDanhSachTongKho.Columns["GiaBan"].Visible = false;
-                    if (dgvDanhSachTongKho.Columns["TrangThai"] != null) dgvDanhSachTongKho.Columns["TrangThai"].Visible = false;
-                    if (dgvDanhSachTongKho.Columns["YeuCauNhap"] != null) dgvDanhSachTongKho.Columns["YeuCauNhap"].Visible = false;
+
                 }
 
                 // 👉 TÍNH TOÁN VÀ HIỂN THỊ THỐNG KÊ TỔNG KHO
@@ -121,17 +139,36 @@ namespace Presentation
 
         private void dgvDanhSachTongKho_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Khi click vào một dòng sản phẩm, bốc thông tin mở rộng hiện lên Panel quản trị bên phải
-            if (e.RowIndex >= 0 && dgvDanhSachTongKho.Rows[e.RowIndex].DataBoundItem is SanPham sp)
+            // Kiểm tra click hợp lệ và KHÔNG click vào dòng trống dưới cùng (IsNewRow)
+            if (e.RowIndex >= 0 && !dgvDanhSachTongKho.Rows[e.RowIndex].IsNewRow)
             {
-                if (lblChiTietCongTy != null)
-                    lblChiTietCongTy.Text = "Công ty: " + (string.IsNullOrEmpty(sp.TenNCC) ? "Chưa xác định" : sp.TenNCC);
+                // Lấy đối tượng SanPham đang nằm ngầm dưới dòng được click
+                if (dgvDanhSachTongKho.Rows[e.RowIndex].DataBoundItem is Domain.Entities.SanPham sp)
+                {
+                    // 1. Đẩy tên công ty
+                    if (txtChiTietCongTy != null)
+                        txtChiTietCongTy.Text = sp.TenNCC;
 
-                if (lblChiTietDonVi != null)
-                    lblChiTietDonVi.Text = "Đơn vị tính: " + (string.IsNullOrEmpty(sp.DonViTinh) ? "Thỏi" : sp.DonViTinh);
 
-                if (lblChiTietTrangThaiGiao != null)
-                    lblChiTietTrangThaiGiao.Text = "Trạng thái: " + (string.IsNullOrEmpty(sp.TrangThaiGiao) ? "Đã giao" : sp.TrangThaiGiao);
+
+                    // 3. Đẩy Trạng thái giao
+                    if (txtChiTietTrangThaiGiao != null)
+                        txtChiTietTrangThaiGiao.Text = sp.TrangThaiGiao;
+
+                    // 4. Đẩy Ngày nhập (Xử lý trường hợp hàng chưa từng được nhập kho)
+                    if (txtChiTietNgayNhap != null)
+                    {
+                        if (sp.NgayNhapCuoi.HasValue) // Kiểm tra xem CSDL có ngày nhập không (khác NULL)
+                        {
+                            // Định dạng hiển thị đầy đủ: Ngày/Tháng/Năm Giờ:Phút
+                            txtChiTietNgayNhap.Text = sp.NgayNhapCuoi.Value.ToString("dd/MM/yyyy HH:mm");
+                        }
+                        else
+                        {
+                            txtChiTietNgayNhap.Text = "Chưa từng nhập kho";
+                        }
+                    }
+                }
             }
         }
 
@@ -334,6 +371,51 @@ namespace Presentation
             {
                 guna2TabControl1.SelectedTab = tabPage2;
             }
+        }
+
+        private void lblChiTietCongTy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtChiTietCongTy_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDongY_Click(object sender, EventArgs e)
+        {
+            string maPhieu = txtMaPhieu_Kho.Text; // Lấy từ click lưới
+            string maSP = txtMaSP_Kho.Text;
+            int soLuong = Convert.ToInt32(txtSoLuong_Kho.Text);
+
+            Application.Services.DuyetPhieuTraUseCase useCase = new Application.Services.DuyetPhieuTraUseCase();
+
+            // Đẩy trạng thái "Đã duyệt" xuống UseCase để nó tự động cộng vào kho
+            if (useCase.Execute(maPhieu, "Đã duyệt", maSP, soLuong))
+            {
+                MessageBox.Show("Đã duyệt phiếu và cộng hàng vào kho thành công!");
+                LoadLaiLuoiChoDuyet(); // Refresh lại lưới
+            }
+        }
+
+        private void btnTuChoi_Click(object sender, EventArgs e)
+        {
+            string maPhieu = txtMaPhieu_Kho.Text;
+
+            Application.Services.DuyetPhieuTraUseCase useCase = new Application.Services.DuyetPhieuTraUseCase();
+
+            // Gửi trạng thái "Từ chối" (UseCase sẽ không cộng hàng)
+            if (useCase.Execute(maPhieu, "Từ chối", "", 0))
+            {
+                MessageBox.Show("Đã từ chối phiếu trả hàng. Vui lòng trả lại hàng cho khách!");
+                LoadLaiLuoiChoDuyet();
+            }
+        }
+
+        private void guna2TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

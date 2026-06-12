@@ -14,16 +14,12 @@ namespace Presentation
 {
     public partial class FrmMain : Form
     {
-        private int _dir = 1;                 // 1: đi tới, -1: đi lui
-        private int _normalPauseMs = 2500;    // dừng giữa các slide
-        private int _endPauseMs = 4500;       // dừng lâu hơn ở 2 đầu (0 và last)
+
 
         private readonly List<Image> _slides = new List<Image>();
-        private int _currentIndex = 0;
 
-        private int _targetLeft = 0;
-        private int _speedPxPerTick = 15;   // tốc độ trượt (px/tick). 30-60 là đẹp
-        private bool _isAnimating = false;
+
+
         private TimeSpan _timeRemaining;
 
         public static int CurrentUserId = 0;
@@ -56,7 +52,7 @@ namespace Presentation
             if (btnBanHang != null) btnBanHang.Click += btnBanHang_Click;
             if (btnSanPham != null) btnSanPham.Click += btnSanPham_Click;
             // Bổ sung các nút khác theo tên Control trong Designer của bạn
-            
+
             if (Logout != null) Logout.Click += Logout_Click;
 
             if (btnKhoHang != null)
@@ -166,13 +162,7 @@ namespace Presentation
 
 
 
-        // ===== 5) giảm flicker cho Panel =====
-        private void EnableDoubleBuffer(Control ctl)
-        {
-            var prop = typeof(Control).GetProperty("DoubleBuffered",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            prop?.SetValue(ctl, true, null);
-        }
+
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
@@ -491,6 +481,18 @@ namespace Presentation
         {
             SetActiveMenuButton(btnKhoHang);
             OpenChildForm(new FrmKhoHang());
+        }
+
+        private void btnGioHang_Click(object sender, EventArgs e)
+        {
+            SetActiveMenuButton(btnGioHang);
+            OpenChildForm(new FrmGioHang());
+        }
+
+        private void btnHoTro_Click(object sender, EventArgs e)
+        {
+            SetActiveMenuButton(btnHoTro);
+            OpenChildForm(new FrmHoTro());
         }
     }
 }
