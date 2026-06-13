@@ -48,11 +48,16 @@
             Column7 = new DataGridViewTextBoxColumn();
             txtTongSoLuong = new TextBox();
             txtTongTien = new TextBox();
+            panel1 = new Panel();
+            label9 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSanPhamMua).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnXoa
             // 
+            btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnXoa.CustomizableEdges = customizableEdges1;
             btnXoa.DisabledState.BorderColor = Color.DarkGray;
             btnXoa.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -60,7 +65,7 @@
             btnXoa.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnXoa.Font = new Font("Segoe UI", 9F);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(458, 502);
+            btnXoa.Location = new Point(549, 12);
             btnXoa.Name = "btnXoa";
             btnXoa.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnXoa.Size = new Size(166, 52);
@@ -70,6 +75,7 @@
             // 
             // btnMua
             // 
+            btnMua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMua.CustomizableEdges = customizableEdges3;
             btnMua.DisabledState.BorderColor = Color.DarkGray;
             btnMua.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -77,7 +83,7 @@
             btnMua.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnMua.Font = new Font("Segoe UI", 9F);
             btnMua.ForeColor = Color.White;
-            btnMua.Location = new Point(242, 502);
+            btnMua.Location = new Point(747, 12);
             btnMua.Name = "btnMua";
             btnMua.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnMua.Size = new Size(166, 52);
@@ -89,6 +95,7 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvSanPhamMua.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvSanPhamMua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -109,11 +116,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvSanPhamMua.DefaultCellStyle = dataGridViewCellStyle3;
             dgvSanPhamMua.GridColor = Color.FromArgb(231, 229, 255);
-            dgvSanPhamMua.Location = new Point(49, 51);
+            dgvSanPhamMua.Location = new Point(22, 84);
             dgvSanPhamMua.Name = "dgvSanPhamMua";
             dgvSanPhamMua.RowHeadersVisible = false;
             dgvSanPhamMua.RowHeadersWidth = 62;
-            dgvSanPhamMua.Size = new Size(799, 225);
+            dgvSanPhamMua.Size = new Size(891, 561);
             dgvSanPhamMua.TabIndex = 3;
             dgvSanPhamMua.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvSanPhamMua.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
@@ -176,17 +183,52 @@
             // 
             // txtTongSoLuong
             // 
-            txtTongSoLuong.Location = new Point(101, 364);
+            txtTongSoLuong.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtTongSoLuong.Location = new Point(504, 14);
             txtTongSoLuong.Name = "txtTongSoLuong";
             txtTongSoLuong.Size = new Size(150, 31);
             txtTongSoLuong.TabIndex = 4;
             // 
             // txtTongTien
             // 
-            txtTongTien.Location = new Point(512, 374);
+            txtTongTien.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtTongTien.Location = new Point(775, 14);
             txtTongTien.Name = "txtTongTien";
             txtTongTien.Size = new Size(150, 31);
             txtTongTien.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txtTongSoLuong);
+            panel1.Controls.Add(txtTongTien);
+            panel1.Location = new Point(1, 673);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(941, 62);
+            panel1.TabIndex = 6;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label9.AutoSize = true;
+            label9.Location = new Point(683, 20);
+            label9.Name = "label9";
+            label9.Size = new Size(87, 25);
+            label9.TabIndex = 18;
+            label9.Text = "Tổng Giá:";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.Location = new Point(406, 20);
+            label2.Name = "label2";
+            label2.Size = new Size(93, 25);
+            label2.TabIndex = 17;
+            label2.Text = "Số Lượng:";
             // 
             // FrmGioHang
             // 
@@ -195,8 +237,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(938, 734);
-            Controls.Add(txtTongTien);
-            Controls.Add(txtTongSoLuong);
+            Controls.Add(panel1);
             Controls.Add(dgvSanPhamMua);
             Controls.Add(btnMua);
             Controls.Add(btnXoa);
@@ -204,8 +245,9 @@
             Name = "FrmGioHang";
             Text = "FrmGioHang";
             ((System.ComponentModel.ISupportInitialize)dgvSanPhamMua).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -221,5 +263,8 @@
         private DataGridViewTextBoxColumn Column7;
         private TextBox txtTongSoLuong;
         private TextBox txtTongTien;
+        private Panel panel1;
+        private Label label9;
+        private Label label2;
     }
 }

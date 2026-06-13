@@ -310,16 +310,13 @@ namespace Presentation
 
         private void CapNhatTongTienHienThi()
         {
-            decimal tong = 0;
-            foreach (var item in _listChiTietTam)
-            {
-                tong += (item.SoLuongNhap * item.GiaNhap);
-            }
+            decimal tong = TinhTongTienPhiu();
 
-            if (lblTongTienPhiu != null)
-            {
-                lblTongTienPhiu.Text = "Tổng tiền phiếu: " + tong.ToString("N0") + " VNĐ";
-            }
+            // 2. MÁY DÒ: Ép phần mềm phải hiện hộp thoại báo cáo số tiền nó vừa tính được!
+            MessageBox.Show("MÁY DÒ: Phần mềm đã tính ra số tiền là: " + tong.ToString("N0"), "Test");
+
+            // 3. Xóa bỏ dòng if (lblTongTienPhiu != null) để ép nó gán thẳng!
+            lblTongTienPhiu.Text = "Tổng tiền phiếu: " + tong.ToString("N0") + " VNĐ";
         }
 
         // HÀNH ĐỘNG 2: BẤM NÚT LƯU PHIẾU NHẬP (Triệu hồi 4 tầng kích hoạt số lượng kho)

@@ -35,6 +35,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHoTro));
             txtSoLuongTra = new TextBox();
             txtLyDo = new TextBox();
             btnTaoPhieu = new Guna.UI2.WinForms.Guna2Button();
@@ -50,25 +51,35 @@
             ThanhTien = new DataGridViewTextBoxColumn();
             btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             txtNgayMua = new TextBox();
+            groupBox1 = new GroupBox();
+            groupBox3 = new GroupBox();
+            label2 = new Label();
+            label1 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLichSuMua).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // txtSoLuongTra
             // 
-            txtSoLuongTra.Location = new Point(102, 434);
+            txtSoLuongTra.Location = new Point(122, 152);
             txtSoLuongTra.Name = "txtSoLuongTra";
-            txtSoLuongTra.Size = new Size(318, 31);
+            txtSoLuongTra.Size = new Size(208, 31);
             txtSoLuongTra.TabIndex = 1;
             // 
             // txtLyDo
             // 
-            txtLyDo.Location = new Point(102, 488);
+            txtLyDo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtLyDo.Location = new Point(23, 245);
+            txtLyDo.Multiline = true;
             txtLyDo.Name = "txtLyDo";
-            txtLyDo.Size = new Size(318, 31);
+            txtLyDo.Size = new Size(893, 98);
             txtLyDo.TabIndex = 2;
             // 
             // btnTaoPhieu
             // 
+            btnTaoPhieu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnTaoPhieu.CustomizableEdges = customizableEdges1;
             btnTaoPhieu.DisabledState.BorderColor = Color.DarkGray;
             btnTaoPhieu.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -76,24 +87,26 @@
             btnTaoPhieu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnTaoPhieu.Font = new Font("Segoe UI", 9F);
             btnTaoPhieu.ForeColor = Color.White;
-            btnTaoPhieu.Location = new Point(708, 669);
+            btnTaoPhieu.Location = new Point(759, 357);
             btnTaoPhieu.Name = "btnTaoPhieu";
             btnTaoPhieu.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnTaoPhieu.Size = new Size(170, 34);
+            btnTaoPhieu.Size = new Size(157, 59);
             btnTaoPhieu.TabIndex = 3;
             btnTaoPhieu.Text = "Tạo Phiếu";
             btnTaoPhieu.Click += btnTaoPhieu_Click;
             // 
             // txtMaHoaDon
             // 
-            txtMaHoaDon.Location = new Point(112, 365);
+            txtMaHoaDon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtMaHoaDon.Location = new Point(18, 38);
             txtMaHoaDon.Name = "txtMaHoaDon";
-            txtMaHoaDon.Size = new Size(308, 31);
+            txtMaHoaDon.Size = new Size(491, 31);
             txtMaHoaDon.TabIndex = 4;
             // 
             // txtMaSP
             // 
-            txtMaSP.Location = new Point(112, 299);
+            txtMaSP.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtMaSP.Location = new Point(15, 39);
             txtMaSP.Name = "txtMaSP";
             txtMaSP.Size = new Size(308, 31);
             txtMaSP.TabIndex = 5;
@@ -102,6 +115,7 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvLichSuMua.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvLichSuMua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -122,11 +136,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvLichSuMua.DefaultCellStyle = dataGridViewCellStyle3;
             dgvLichSuMua.GridColor = Color.FromArgb(231, 229, 255);
-            dgvLichSuMua.Location = new Point(67, 33);
+            dgvLichSuMua.Location = new Point(23, 431);
             dgvLichSuMua.Name = "dgvLichSuMua";
             dgvLichSuMua.RowHeadersVisible = false;
             dgvLichSuMua.RowHeadersWidth = 62;
-            dgvLichSuMua.Size = new Size(811, 230);
+            dgvLichSuMua.Size = new Size(893, 279);
             dgvLichSuMua.TabIndex = 7;
             dgvLichSuMua.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvLichSuMua.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
@@ -186,6 +200,7 @@
             // 
             // btnTraCuu
             // 
+            btnTraCuu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnTraCuu.CustomizableEdges = customizableEdges3;
             btnTraCuu.DisabledState.BorderColor = Color.DarkGray;
             btnTraCuu.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -193,38 +208,103 @@
             btnTraCuu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnTraCuu.Font = new Font("Segoe UI", 9F);
             btnTraCuu.ForeColor = Color.White;
-            btnTraCuu.Location = new Point(553, 669);
+            btnTraCuu.Location = new Point(578, 357);
             btnTraCuu.Name = "btnTraCuu";
             btnTraCuu.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnTraCuu.Size = new Size(132, 34);
+            btnTraCuu.Size = new Size(157, 63);
             btnTraCuu.TabIndex = 8;
             btnTraCuu.Text = "Tra Cứu";
             btnTraCuu.Click += btnTraCuu_Click;
             // 
             // txtNgayMua
             // 
-            txtNgayMua.Location = new Point(546, 299);
+            txtNgayMua.Location = new Point(459, 149);
             txtNgayMua.Name = "txtNgayMua";
-            txtNgayMua.Size = new Size(231, 31);
+            txtNgayMua.Size = new Size(276, 31);
             txtNgayMua.TabIndex = 9;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(txtMaSP);
+            groupBox1.Location = new Point(578, 25);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(338, 92);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Mã Sản Phẩm";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox3.BackColor = Color.Transparent;
+            groupBox3.Controls.Add(txtMaHoaDon);
+            groupBox3.Location = new Point(23, 25);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(526, 87);
+            groupBox3.TabIndex = 12;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Mã Hóa Đơn";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Location = new Point(23, 155);
+            label2.Name = "label2";
+            label2.Size = new Size(93, 25);
+            label2.TabIndex = 18;
+            label2.Text = "Số Lượng:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Location = new Point(355, 155);
+            label1.Name = "label1";
+            label1.Size = new Size(98, 25);
+            label1.TabIndex = 19;
+            label1.Text = "Ngày Mua:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Location = new Point(23, 205);
+            label3.Name = "label3";
+            label3.Size = new Size(61, 25);
+            label3.TabIndex = 20;
+            label3.Text = "Lý Do:";
+            label3.Click += label3_Click;
             // 
             // FrmHoTro
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(938, 734);
+            Controls.Add(label3);
+            Controls.Add(label1);
+            Controls.Add(label2);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox1);
             Controls.Add(txtNgayMua);
             Controls.Add(btnTraCuu);
             Controls.Add(dgvLichSuMua);
-            Controls.Add(txtMaSP);
-            Controls.Add(txtMaHoaDon);
             Controls.Add(btnTaoPhieu);
             Controls.Add(txtLyDo);
             Controls.Add(txtSoLuongTra);
+            DoubleBuffered = true;
             Name = "FrmHoTro";
             Text = "FrmHoTro";
             Load += FrmHoTro_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLichSuMua).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -245,5 +325,10 @@
         private DataGridViewTextBoxColumn GiaBan;
         private DataGridViewTextBoxColumn ThanhTien;
         private TextBox txtNgayMua;
+        private GroupBox groupBox1;
+        private GroupBox groupBox3;
+        private Label label2;
+        private Label label1;
+        private Label label3;
     }
 }

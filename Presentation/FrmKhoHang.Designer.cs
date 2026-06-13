@@ -76,14 +76,20 @@
             btnChuyenSangNhapHang = new Guna.UI2.WinForms.Guna2Button();
             label1 = new Label();
             tabPage2 = new TabPage();
-            txtDonViTinh = new TextBox();
-            cboTrangThaiGiao = new ComboBox();
             lblTongTienPhiu = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
             label4 = new Label();
+            groupBox6 = new GroupBox();
+            txtDonViTinh = new TextBox();
+            groupBox5 = new GroupBox();
+            cboSanPhamNCC = new ComboBox();
+            groupBox4 = new GroupBox();
+            cboTrangThaiGiao = new ComboBox();
+            groupBox3 = new GroupBox();
+            txtMaPN = new Guna.UI2.WinForms.Guna2TextBox();
+            groupBox2 = new GroupBox();
+            cboNhaCungCap = new Guna.UI2.WinForms.Guna2ComboBox();
+            label8 = new Label();
+            label6 = new Label();
             label3 = new Label();
             dgvChiTietTam = new DataGridView();
             btnLuuPhieuNhap = new Guna.UI2.WinForms.Guna2Button();
@@ -91,16 +97,13 @@
             txtGiaNhap = new TextBox();
             numSoLuongNhap = new Guna.UI2.WinForms.Guna2NumericUpDown();
             dtpNgayNhap = new DateTimePicker();
-            txtMaPN = new Guna.UI2.WinForms.Guna2TextBox();
-            cboSanPhamNCC = new ComboBox();
-            cboNhaCungCap = new Guna.UI2.WinForms.Guna2ComboBox();
             tabPage3 = new TabPage();
-            dgvPhieuChoDuyet = new Guna.UI2.WinForms.Guna2DataGridView();
-            txtSoLuong_Kho = new TextBox();
+            label5 = new Label();
+            groupBox8 = new GroupBox();
             txtMaSP_Kho = new TextBox();
+            groupBox7 = new GroupBox();
             txtMaPhieu_Kho = new TextBox();
-            btnTuChoi = new Guna.UI2.WinForms.Guna2Button();
-            btnDongY = new Guna.UI2.WinForms.Guna2Button();
+            dgvPhieuChoDuyet = new Guna.UI2.WinForms.Guna2DataGridView();
             MaPhieu = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             colTenSP_Kho = new DataGridViewTextBoxColumn();
@@ -109,15 +112,25 @@
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
+            txtSoLuong_Kho = new TextBox();
+            btnTuChoi = new Guna.UI2.WinForms.Guna2Button();
+            btnDongY = new Guna.UI2.WinForms.Guna2Button();
             guna2TabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachTongKho).BeginInit();
             tabPage2.SuspendLayout();
+            groupBox6.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvChiTietTam).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSoLuongNhap).BeginInit();
             tabPage3.SuspendLayout();
+            groupBox8.SuspendLayout();
+            groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPhieuChoDuyet).BeginInit();
             SuspendLayout();
             // 
@@ -388,10 +401,10 @@
             btnChuyenSangNhapHang.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnChuyenSangNhapHang.Font = new Font("Segoe UI", 9F);
             btnChuyenSangNhapHang.ForeColor = Color.White;
-            btnChuyenSangNhapHang.Location = new Point(627, 204);
+            btnChuyenSangNhapHang.Location = new Point(627, 194);
             btnChuyenSangNhapHang.Name = "btnChuyenSangNhapHang";
             btnChuyenSangNhapHang.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnChuyenSangNhapHang.Size = new Size(167, 42);
+            btnChuyenSangNhapHang.Size = new Size(179, 52);
             btnChuyenSangNhapHang.TabIndex = 12;
             btnChuyenSangNhapHang.Text = "Thêm Sản Phẩm";
             btnChuyenSangNhapHang.Click += btnChuyenSangNhapHang_Click;
@@ -407,14 +420,17 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(txtDonViTinh);
-            tabPage2.Controls.Add(cboTrangThaiGiao);
+            tabPage2.BackgroundImage = (Image)resources.GetObject("tabPage2.BackgroundImage");
+            tabPage2.BackgroundImageLayout = ImageLayout.Stretch;
             tabPage2.Controls.Add(lblTongTienPhiu);
-            tabPage2.Controls.Add(label8);
-            tabPage2.Controls.Add(label7);
-            tabPage2.Controls.Add(label6);
-            tabPage2.Controls.Add(label5);
             tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(groupBox6);
+            tabPage2.Controls.Add(groupBox5);
+            tabPage2.Controls.Add(groupBox4);
+            tabPage2.Controls.Add(groupBox3);
+            tabPage2.Controls.Add(groupBox2);
+            tabPage2.Controls.Add(label8);
+            tabPage2.Controls.Add(label6);
             tabPage2.Controls.Add(label3);
             tabPage2.Controls.Add(dgvChiTietTam);
             tabPage2.Controls.Add(btnLuuPhieuNhap);
@@ -422,9 +438,6 @@
             tabPage2.Controls.Add(txtGiaNhap);
             tabPage2.Controls.Add(numSoLuongNhap);
             tabPage2.Controls.Add(dtpNgayNhap);
-            tabPage2.Controls.Add(txtMaPN);
-            tabPage2.Controls.Add(cboSanPhamNCC);
-            tabPage2.Controls.Add(cboNhaCungCap);
             tabPage2.Location = new Point(124, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -433,162 +446,100 @@
             tabPage2.Text = "NHẬP HÀNG";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lblTongTienPhiu
+            // 
+            lblTongTienPhiu.AutoSize = true;
+            lblTongTienPhiu.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTongTienPhiu.Location = new Point(18, 540);
+            lblTongTienPhiu.Name = "lblTongTienPhiu";
+            lblTongTienPhiu.Size = new Size(182, 48);
+            lblTongTienPhiu.TabIndex = 34;
+            lblTongTienPhiu.Text = "Tổng tiền";
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(471, 471);
+            label4.Name = "label4";
+            label4.Size = new Size(124, 32);
+            label4.TabIndex = 33;
+            label4.Text = "Số Lượng:";
+            // 
+            // groupBox6
+            // 
+            groupBox6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox6.Controls.Add(txtDonViTinh);
+            groupBox6.Location = new Point(597, 280);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(199, 85);
+            groupBox6.TabIndex = 32;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Loại";
+            // 
             // txtDonViTinh
             // 
-            txtDonViTinh.Location = new Point(271, 433);
+            txtDonViTinh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDonViTinh.Location = new Point(14, 39);
             txtDonViTinh.Name = "txtDonViTinh";
-            txtDonViTinh.Size = new Size(150, 31);
+            txtDonViTinh.Size = new Size(175, 31);
             txtDonViTinh.TabIndex = 27;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox5.Controls.Add(cboSanPhamNCC);
+            groupBox5.Location = new Point(18, 280);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(556, 85);
+            groupBox5.TabIndex = 31;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Sản Phầm Cung Cấp";
+            // 
+            // cboSanPhamNCC
+            // 
+            cboSanPhamNCC.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cboSanPhamNCC.FormattingEnabled = true;
+            cboSanPhamNCC.Location = new Point(17, 37);
+            cboSanPhamNCC.Name = "cboSanPhamNCC";
+            cboSanPhamNCC.Size = new Size(520, 33);
+            cboSanPhamNCC.TabIndex = 2;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox4.Controls.Add(cboTrangThaiGiao);
+            groupBox4.Location = new Point(477, 166);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(331, 82);
+            groupBox4.TabIndex = 30;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Trạng Thái";
             // 
             // cboTrangThaiGiao
             // 
             cboTrangThaiGiao.FormattingEnabled = true;
-            cboTrangThaiGiao.Location = new Point(539, 492);
+            cboTrangThaiGiao.Location = new Point(18, 32);
             cboTrangThaiGiao.Name = "cboTrangThaiGiao";
-            cboTrangThaiGiao.Size = new Size(182, 33);
+            cboTrangThaiGiao.Size = new Size(299, 33);
             cboTrangThaiGiao.TabIndex = 26;
             // 
-            // lblTongTienPhiu
+            // groupBox3
             // 
-            lblTongTienPhiu.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTongTienPhiu.Location = new Point(376, 617);
-            lblTongTienPhiu.Name = "lblTongTienPhiu";
-            lblTongTienPhiu.Size = new Size(178, 51);
-            lblTongTienPhiu.TabIndex = 24;
-            lblTongTienPhiu.Text = "Tổng Tiền";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(399, 493);
-            label8.Name = "label8";
-            label8.Size = new Size(134, 32);
-            label8.TabIndex = 23;
-            label8.Text = "Trạng Thái:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(165, 430);
-            label7.Name = "label7";
-            label7.Size = new Size(94, 32);
-            label7.TabIndex = 22;
-            label7.Text = "Đơn Vị:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(32, 493);
-            label6.Name = "label6";
-            label6.Size = new Size(122, 32);
-            label6.TabIndex = 21;
-            label6.Text = "Giá Nhập:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(18, 372);
-            label5.Name = "label5";
-            label5.Size = new Size(242, 32);
-            label5.TabIndex = 20;
-            label5.Text = "Sản Phầm Cung Cấp:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(82, 310);
-            label4.Name = "label4";
-            label4.Size = new Size(178, 32);
-            label4.TabIndex = 19;
-            label4.Text = "Nhà Cung Cấp:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(137, 249);
-            label3.Name = "label3";
-            label3.Size = new Size(123, 32);
-            label3.TabIndex = 18;
-            label3.Text = "Mã Phiếu:";
-            // 
-            // dgvChiTietTam
-            // 
-            dgvChiTietTam.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgvChiTietTam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvChiTietTam.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvChiTietTam.Location = new Point(25, 15);
-            dgvChiTietTam.Name = "dgvChiTietTam";
-            dgvChiTietTam.RowHeadersWidth = 62;
-            dgvChiTietTam.Size = new Size(775, 209);
-            dgvChiTietTam.TabIndex = 16;
-            // 
-            // btnLuuPhieuNhap
-            // 
-            btnLuuPhieuNhap.CustomizableEdges = customizableEdges3;
-            btnLuuPhieuNhap.DisabledState.BorderColor = Color.DarkGray;
-            btnLuuPhieuNhap.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnLuuPhieuNhap.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnLuuPhieuNhap.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLuuPhieuNhap.Font = new Font("Segoe UI", 9F);
-            btnLuuPhieuNhap.ForeColor = Color.White;
-            btnLuuPhieuNhap.Location = new Point(582, 686);
-            btnLuuPhieuNhap.Name = "btnLuuPhieuNhap";
-            btnLuuPhieuNhap.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnLuuPhieuNhap.Size = new Size(179, 42);
-            btnLuuPhieuNhap.TabIndex = 15;
-            btnLuuPhieuNhap.Text = "Lưu";
-            // 
-            // btnThemVaoPhieu
-            // 
-            btnThemVaoPhieu.CustomizableEdges = customizableEdges5;
-            btnThemVaoPhieu.DisabledState.BorderColor = Color.DarkGray;
-            btnThemVaoPhieu.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnThemVaoPhieu.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnThemVaoPhieu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnThemVaoPhieu.Font = new Font("Segoe UI", 9F);
-            btnThemVaoPhieu.ForeColor = Color.White;
-            btnThemVaoPhieu.Location = new Point(376, 686);
-            btnThemVaoPhieu.Name = "btnThemVaoPhieu";
-            btnThemVaoPhieu.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnThemVaoPhieu.Size = new Size(179, 42);
-            btnThemVaoPhieu.TabIndex = 14;
-            btnThemVaoPhieu.Text = "Thêm";
-            // 
-            // txtGiaNhap
-            // 
-            txtGiaNhap.Location = new Point(165, 494);
-            txtGiaNhap.Name = "txtGiaNhap";
-            txtGiaNhap.Size = new Size(179, 31);
-            txtGiaNhap.TabIndex = 10;
-            // 
-            // numSoLuongNhap
-            // 
-            numSoLuongNhap.BackColor = Color.Transparent;
-            numSoLuongNhap.CustomizableEdges = customizableEdges7;
-            numSoLuongNhap.Font = new Font("Segoe UI", 9F);
-            numSoLuongNhap.Location = new Point(553, 546);
-            numSoLuongNhap.Margin = new Padding(4, 5, 4, 5);
-            numSoLuongNhap.Name = "numSoLuongNhap";
-            numSoLuongNhap.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            numSoLuongNhap.Size = new Size(208, 50);
-            numSoLuongNhap.TabIndex = 9;
-            // 
-            // dtpNgayNhap
-            // 
-            dtpNgayNhap.Location = new Point(25, 686);
-            dtpNgayNhap.Name = "dtpNgayNhap";
-            dtpNgayNhap.Size = new Size(306, 31);
-            dtpNgayNhap.TabIndex = 8;
+            groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox3.Controls.Add(txtMaPN);
+            groupBox3.Location = new Point(18, 166);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(440, 82);
+            groupBox3.TabIndex = 29;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Mã Phiếu";
             // 
             // txtMaPN
             // 
-            txtMaPN.CustomizableEdges = customizableEdges9;
+            txtMaPN.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtMaPN.CustomizableEdges = customizableEdges3;
             txtMaPN.DefaultText = "";
             txtMaPN.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtMaPN.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -597,27 +548,31 @@
             txtMaPN.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtMaPN.Font = new Font("Segoe UI", 9F);
             txtMaPN.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtMaPN.Location = new Point(271, 245);
+            txtMaPN.Location = new Point(17, 32);
             txtMaPN.Margin = new Padding(4, 5, 4, 5);
             txtMaPN.Name = "txtMaPN";
             txtMaPN.PlaceholderText = "";
             txtMaPN.SelectedText = "";
-            txtMaPN.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            txtMaPN.Size = new Size(490, 36);
+            txtMaPN.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtMaPN.Size = new Size(402, 36);
             txtMaPN.TabIndex = 7;
             // 
-            // cboSanPhamNCC
+            // groupBox2
             // 
-            cboSanPhamNCC.FormattingEnabled = true;
-            cboSanPhamNCC.Location = new Point(271, 375);
-            cboSanPhamNCC.Name = "cboSanPhamNCC";
-            cboSanPhamNCC.Size = new Size(490, 33);
-            cboSanPhamNCC.TabIndex = 2;
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox2.Controls.Add(cboNhaCungCap);
+            groupBox2.Location = new Point(18, 25);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(790, 121);
+            groupBox2.TabIndex = 28;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Nhà Cung Cấp";
             // 
             // cboNhaCungCap
             // 
+            cboNhaCungCap.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cboNhaCungCap.BackColor = Color.Transparent;
-            cboNhaCungCap.CustomizableEdges = customizableEdges11;
+            cboNhaCungCap.CustomizableEdges = customizableEdges5;
             cboNhaCungCap.DrawMode = DrawMode.OwnerDrawFixed;
             cboNhaCungCap.DropDownStyle = ComboBoxStyle.DropDownList;
             cboNhaCungCap.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -625,18 +580,124 @@
             cboNhaCungCap.Font = new Font("Segoe UI", 10F);
             cboNhaCungCap.ForeColor = Color.FromArgb(68, 88, 112);
             cboNhaCungCap.ItemHeight = 30;
-            cboNhaCungCap.Location = new Point(271, 306);
+            cboNhaCungCap.Location = new Point(13, 34);
             cboNhaCungCap.Name = "cboNhaCungCap";
-            cboNhaCungCap.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            cboNhaCungCap.Size = new Size(490, 36);
+            cboNhaCungCap.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            cboNhaCungCap.Size = new Size(765, 36);
             cboNhaCungCap.TabIndex = 1;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(399, 493);
+            label8.Name = "label8";
+            label8.Size = new Size(0, 32);
+            label8.TabIndex = 23;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(473, 396);
+            label6.Name = "label6";
+            label6.Size = new Size(122, 32);
+            label6.TabIndex = 21;
+            label6.Text = "Giá Nhập:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(88, 185);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 32);
+            label3.TabIndex = 18;
+            // 
+            // dgvChiTietTam
+            // 
+            dgvChiTietTam.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvChiTietTam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvChiTietTam.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvChiTietTam.Location = new Point(18, 607);
+            dgvChiTietTam.Name = "dgvChiTietTam";
+            dgvChiTietTam.RowHeadersWidth = 62;
+            dgvChiTietTam.Size = new Size(790, 123);
+            dgvChiTietTam.TabIndex = 16;
+            // 
+            // btnLuuPhieuNhap
+            // 
+            btnLuuPhieuNhap.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLuuPhieuNhap.CustomizableEdges = customizableEdges7;
+            btnLuuPhieuNhap.DisabledState.BorderColor = Color.DarkGray;
+            btnLuuPhieuNhap.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLuuPhieuNhap.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLuuPhieuNhap.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLuuPhieuNhap.Font = new Font("Segoe UI", 9F);
+            btnLuuPhieuNhap.ForeColor = Color.White;
+            btnLuuPhieuNhap.Location = new Point(416, 546);
+            btnLuuPhieuNhap.Name = "btnLuuPhieuNhap";
+            btnLuuPhieuNhap.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnLuuPhieuNhap.Size = new Size(179, 42);
+            btnLuuPhieuNhap.TabIndex = 15;
+            btnLuuPhieuNhap.Text = "Lưu";
+            // 
+            // btnThemVaoPhieu
+            // 
+            btnThemVaoPhieu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnThemVaoPhieu.CustomizableEdges = customizableEdges9;
+            btnThemVaoPhieu.DisabledState.BorderColor = Color.DarkGray;
+            btnThemVaoPhieu.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnThemVaoPhieu.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnThemVaoPhieu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnThemVaoPhieu.Font = new Font("Segoe UI", 9F);
+            btnThemVaoPhieu.ForeColor = Color.White;
+            btnThemVaoPhieu.Location = new Point(617, 546);
+            btnThemVaoPhieu.Name = "btnThemVaoPhieu";
+            btnThemVaoPhieu.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnThemVaoPhieu.Size = new Size(179, 42);
+            btnThemVaoPhieu.TabIndex = 14;
+            btnThemVaoPhieu.Text = "Thêm";
+            // 
+            // txtGiaNhap
+            // 
+            txtGiaNhap.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtGiaNhap.Location = new Point(611, 396);
+            txtGiaNhap.Name = "txtGiaNhap";
+            txtGiaNhap.Size = new Size(185, 31);
+            txtGiaNhap.TabIndex = 10;
+            // 
+            // numSoLuongNhap
+            // 
+            numSoLuongNhap.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            numSoLuongNhap.BackColor = Color.Transparent;
+            numSoLuongNhap.CustomizableEdges = customizableEdges11;
+            numSoLuongNhap.Font = new Font("Segoe UI", 9F);
+            numSoLuongNhap.Location = new Point(617, 461);
+            numSoLuongNhap.Margin = new Padding(4, 5, 4, 5);
+            numSoLuongNhap.Name = "numSoLuongNhap";
+            numSoLuongNhap.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            numSoLuongNhap.Size = new Size(179, 50);
+            numSoLuongNhap.TabIndex = 9;
+            // 
+            // dtpNgayNhap
+            // 
+            dtpNgayNhap.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dtpNgayNhap.Location = new Point(18, 396);
+            dtpNgayNhap.Name = "dtpNgayNhap";
+            dtpNgayNhap.Size = new Size(386, 31);
+            dtpNgayNhap.TabIndex = 8;
             // 
             // tabPage3
             // 
+            tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
+            tabPage3.BackgroundImageLayout = ImageLayout.Stretch;
+            tabPage3.Controls.Add(label5);
+            tabPage3.Controls.Add(groupBox8);
+            tabPage3.Controls.Add(groupBox7);
             tabPage3.Controls.Add(dgvPhieuChoDuyet);
             tabPage3.Controls.Add(txtSoLuong_Kho);
-            tabPage3.Controls.Add(txtMaSP_Kho);
-            tabPage3.Controls.Add(txtMaPhieu_Kho);
             tabPage3.Controls.Add(btnTuChoi);
             tabPage3.Controls.Add(btnDongY);
             tabPage3.Location = new Point(124, 4);
@@ -647,10 +708,59 @@
             tabPage3.Text = "DUYỆT ĐỔI TRẢ";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(22, 152);
+            label5.Name = "label5";
+            label5.Size = new Size(124, 32);
+            label5.TabIndex = 34;
+            label5.Text = "Số Lượng:";
+            // 
+            // groupBox8
+            // 
+            groupBox8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox8.Controls.Add(txtMaSP_Kho);
+            groupBox8.Location = new Point(424, 23);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new Size(383, 97);
+            groupBox8.TabIndex = 8;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "Mã Sản Phẩm";
+            // 
+            // txtMaSP_Kho
+            // 
+            txtMaSP_Kho.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtMaSP_Kho.Location = new Point(19, 40);
+            txtMaSP_Kho.Name = "txtMaSP_Kho";
+            txtMaSP_Kho.Size = new Size(348, 31);
+            txtMaSP_Kho.TabIndex = 4;
+            // 
+            // groupBox7
+            // 
+            groupBox7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox7.Controls.Add(txtMaPhieu_Kho);
+            groupBox7.Location = new Point(22, 23);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(383, 97);
+            groupBox7.TabIndex = 7;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Mã Phiếu";
+            // 
+            // txtMaPhieu_Kho
+            // 
+            txtMaPhieu_Kho.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtMaPhieu_Kho.Location = new Point(17, 40);
+            txtMaPhieu_Kho.Name = "txtMaPhieu_Kho";
+            txtMaPhieu_Kho.Size = new Size(348, 31);
+            txtMaPhieu_Kho.TabIndex = 3;
+            // 
             // dgvPhieuChoDuyet
             // 
             dataGridViewCellStyle4.BackColor = Color.White;
             dgvPhieuChoDuyet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvPhieuChoDuyet.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
@@ -671,11 +781,11 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             dgvPhieuChoDuyet.DefaultCellStyle = dataGridViewCellStyle6;
             dgvPhieuChoDuyet.GridColor = Color.FromArgb(231, 229, 255);
-            dgvPhieuChoDuyet.Location = new Point(37, 61);
+            dgvPhieuChoDuyet.Location = new Point(22, 221);
             dgvPhieuChoDuyet.Name = "dgvPhieuChoDuyet";
             dgvPhieuChoDuyet.RowHeadersVisible = false;
             dgvPhieuChoDuyet.RowHeadersWidth = 62;
-            dgvPhieuChoDuyet.Size = new Size(767, 225);
+            dgvPhieuChoDuyet.Size = new Size(785, 496);
             dgvPhieuChoDuyet.TabIndex = 6;
             dgvPhieuChoDuyet.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvPhieuChoDuyet.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
@@ -684,61 +794,6 @@
             dgvPhieuChoDuyet.ThemeStyle.RowsStyle.Height = 33;
             dgvPhieuChoDuyet.CellClick += dgvPhieuChoDuyet_CellContentClick;
             dgvPhieuChoDuyet.CellContentClick += dgvPhieuChoDuyet_CellContentClick;
-            // 
-            // txtSoLuong_Kho
-            // 
-            txtSoLuong_Kho.Location = new Point(503, 367);
-            txtSoLuong_Kho.Name = "txtSoLuong_Kho";
-            txtSoLuong_Kho.Size = new Size(150, 31);
-            txtSoLuong_Kho.TabIndex = 5;
-            // 
-            // txtMaSP_Kho
-            // 
-            txtMaSP_Kho.Location = new Point(77, 398);
-            txtMaSP_Kho.Name = "txtMaSP_Kho";
-            txtMaSP_Kho.Size = new Size(242, 31);
-            txtMaSP_Kho.TabIndex = 4;
-            // 
-            // txtMaPhieu_Kho
-            // 
-            txtMaPhieu_Kho.Location = new Point(77, 342);
-            txtMaPhieu_Kho.Name = "txtMaPhieu_Kho";
-            txtMaPhieu_Kho.Size = new Size(242, 31);
-            txtMaPhieu_Kho.TabIndex = 3;
-            // 
-            // btnTuChoi
-            // 
-            btnTuChoi.CustomizableEdges = customizableEdges13;
-            btnTuChoi.DisabledState.BorderColor = Color.DarkGray;
-            btnTuChoi.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnTuChoi.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnTuChoi.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnTuChoi.Font = new Font("Segoe UI", 9F);
-            btnTuChoi.ForeColor = Color.White;
-            btnTuChoi.Location = new Point(411, 523);
-            btnTuChoi.Name = "btnTuChoi";
-            btnTuChoi.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnTuChoi.Size = new Size(216, 58);
-            btnTuChoi.TabIndex = 2;
-            btnTuChoi.Text = "Từ Chối";
-            btnTuChoi.Click += btnTuChoi_Click;
-            // 
-            // btnDongY
-            // 
-            btnDongY.CustomizableEdges = customizableEdges15;
-            btnDongY.DisabledState.BorderColor = Color.DarkGray;
-            btnDongY.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnDongY.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnDongY.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnDongY.Font = new Font("Segoe UI", 9F);
-            btnDongY.ForeColor = Color.White;
-            btnDongY.Location = new Point(77, 523);
-            btnDongY.Name = "btnDongY";
-            btnDongY.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            btnDongY.Size = new Size(190, 58);
-            btnDongY.TabIndex = 1;
-            btnDongY.Text = "Đồng Ý";
-            btnDongY.Click += btnDongY_Click;
             // 
             // MaPhieu
             // 
@@ -796,6 +851,49 @@
             Column7.MinimumWidth = 8;
             Column7.Name = "Column7";
             // 
+            // txtSoLuong_Kho
+            // 
+            txtSoLuong_Kho.Location = new Point(152, 152);
+            txtSoLuong_Kho.Name = "txtSoLuong_Kho";
+            txtSoLuong_Kho.Size = new Size(114, 31);
+            txtSoLuong_Kho.TabIndex = 5;
+            // 
+            // btnTuChoi
+            // 
+            btnTuChoi.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnTuChoi.CustomizableEdges = customizableEdges13;
+            btnTuChoi.DisabledState.BorderColor = Color.DarkGray;
+            btnTuChoi.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnTuChoi.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnTuChoi.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnTuChoi.Font = new Font("Segoe UI", 9F);
+            btnTuChoi.ForeColor = Color.White;
+            btnTuChoi.Location = new Point(379, 139);
+            btnTuChoi.Name = "btnTuChoi";
+            btnTuChoi.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnTuChoi.Size = new Size(216, 58);
+            btnTuChoi.TabIndex = 2;
+            btnTuChoi.Text = "Từ Chối";
+            btnTuChoi.Click += btnTuChoi_Click;
+            // 
+            // btnDongY
+            // 
+            btnDongY.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDongY.CustomizableEdges = customizableEdges15;
+            btnDongY.DisabledState.BorderColor = Color.DarkGray;
+            btnDongY.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDongY.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDongY.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDongY.Font = new Font("Segoe UI", 9F);
+            btnDongY.ForeColor = Color.White;
+            btnDongY.Location = new Point(617, 139);
+            btnDongY.Name = "btnDongY";
+            btnDongY.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnDongY.Size = new Size(190, 58);
+            btnDongY.TabIndex = 1;
+            btnDongY.Text = "Đồng Ý";
+            btnDongY.Click += btnDongY_Click;
+            // 
             // FrmKhoHang
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -815,37 +913,28 @@
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachTongKho).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvChiTietTam).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSoLuongNhap).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            groupBox8.ResumeLayout(false);
+            groupBox8.PerformLayout();
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPhieuChoDuyet).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private Guna.UI2.WinForms.Guna2TabControl guna2TabControl1;
-        private TabPage tabPage2;
-        private Guna.UI2.WinForms.Guna2ComboBox cboNhaCungCap;
-        private ComboBox cboSanPhamNCC;
         private TabPage tabPage1;
         private Label label1;
-        private Guna.UI2.WinForms.Guna2NumericUpDown numSoLuongNhap;
-        private DateTimePicker dtpNgayNhap;
-        private Guna.UI2.WinForms.Guna2TextBox txtMaPN;
-        private DataGridView dgvChiTietTam;
-        private Guna.UI2.WinForms.Guna2Button btnLuuPhieuNhap;
-        private Guna.UI2.WinForms.Guna2Button btnThemVaoPhieu;
-        private TextBox txtGiaNhap;
-        private Label label3;
-        private Label label4;
-        private Label label6;
-        private Label label5;
-        private Label label8;
-        private Label label7;
-        private Label lblTongTienPhiu;
-        private ComboBox cboTrangThaiGiao;
-        private TextBox txtDonViTinh;
         private Guna.UI2.WinForms.Guna2Button btnChuyenSangNhapHang;
         private Label label9;
         private Label label2;
@@ -882,5 +971,30 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
+        private TabPage tabPage2;
+        private GroupBox groupBox4;
+        private GroupBox groupBox3;
+        private Guna.UI2.WinForms.Guna2TextBox txtMaPN;
+        private GroupBox groupBox2;
+        private Guna.UI2.WinForms.Guna2ComboBox cboNhaCungCap;
+        private TextBox txtDonViTinh;
+        private ComboBox cboTrangThaiGiao;
+        private Label label8;
+        private Label label6;
+        private Label label3;
+        private DataGridView dgvChiTietTam;
+        private Guna.UI2.WinForms.Guna2Button btnLuuPhieuNhap;
+        private Guna.UI2.WinForms.Guna2Button btnThemVaoPhieu;
+        private TextBox txtGiaNhap;
+        private Guna.UI2.WinForms.Guna2NumericUpDown numSoLuongNhap;
+        private DateTimePicker dtpNgayNhap;
+        private ComboBox cboSanPhamNCC;
+        private GroupBox groupBox6;
+        private GroupBox groupBox5;
+        private Label label4;
+        private GroupBox groupBox8;
+        private GroupBox groupBox7;
+        private Label label5;
+        private Label lblTongTienPhiu;
     }
 }

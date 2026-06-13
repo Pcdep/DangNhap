@@ -73,7 +73,7 @@ namespace Presentation
         {
             btnBanHang.Checked = false;
             btnSanPham.Checked = false;
-            btnThongTin.Checked = false;
+            
             btnKhoHang.Checked = false;
 
             if (activeButton != null)
@@ -493,6 +493,16 @@ namespace Presentation
         {
             SetActiveMenuButton(btnHoTro);
             OpenChildForm(new FrmHoTro());
+        }
+
+        private void btnThongTin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 }

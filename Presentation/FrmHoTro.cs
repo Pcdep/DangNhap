@@ -176,6 +176,11 @@ namespace Presentation
                 MessageBox.Show("Lỗi đọc dòng: " + ex.Message, "Lỗi");
             }
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

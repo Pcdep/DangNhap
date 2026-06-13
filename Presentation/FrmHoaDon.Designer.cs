@@ -62,6 +62,7 @@
             btnInHoaDon.DisabledState.CustomBorderColor = Color.DarkGray;
             btnInHoaDon.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnInHoaDon.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnInHoaDon.FillColor = Color.RoyalBlue;
             btnInHoaDon.Font = new Font("Segoe UI", 9F);
             btnInHoaDon.ForeColor = Color.White;
             btnInHoaDon.Location = new Point(452, 547);
