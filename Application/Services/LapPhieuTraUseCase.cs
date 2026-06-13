@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// 👉 1. Khai báo thêm 2 thư viện này để dùng được Enum và GetDescription()
+using Domain.Enums;
+using Domain.Extensions;
 
 namespace Application.Services
 {
@@ -24,6 +27,9 @@ namespace Application.Services
             // Sinh mã phiếu tự động
             phieu.MaPhieu = "PT" + DateTime.Now.ToString("yyyyMMddHHmmss");
             phieu.NgayLap = DateTime.Now;
+
+            // 👉 2. BỔ SUNG DÒNG NÀY: Gán trạng thái mặc định bằng Enum chuẩn
+            phieu.TrangThai = TrangThaiPhieuTra.ChoDuyet.GetDescription();
 
             bool kq = _repo.ThemPhieuTra(phieu);
             return kq ? "Thành công" : "Lỗi khi lưu phiếu trả vào hệ thống.";

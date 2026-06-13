@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Application.Services;  // Gọi ThemPhieuNhapUseCase và LayDanhSachSanPhamUseCase
+using Domain.Entities;       // Gọi thực thể PhieuNhap, ChiTietPhieuNhap
+using Domain.Enums;
+using Domain.Extensions;
+using Infracstructure.Services;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Domain.Entities;       // Gọi thực thể PhieuNhap, ChiTietPhieuNhap
-using Application.Services;  // Gọi ThemPhieuNhapUseCase và LayDanhSachSanPhamUseCase
-using Infracstructure.Services;
 
 namespace Presentation
 {
@@ -392,10 +394,10 @@ namespace Presentation
             Application.Services.DuyetPhieuTraUseCase useCase = new Application.Services.DuyetPhieuTraUseCase();
 
             // Đẩy trạng thái "Đã duyệt" xuống UseCase để nó tự động cộng vào kho
-            if (useCase.Execute(maPhieu, "Đã duyệt", maSP, soLuong))
+            if (useCase.Execute(maPhieu, TrangThaiPhieuTra.DaDuyet.GetDescription(), maSP, soLuong))
             {
                 MessageBox.Show("Đã duyệt phiếu và cộng hàng vào kho thành công!");
-                LoadLaiLuoiChoDuyet(); // Refresh lại lưới
+                LoadLaiLuoiChoDuyet();
             }
         }
 
@@ -410,7 +412,7 @@ namespace Presentation
             string maPhieu = txtMaPhieu_Kho.Text;
             Application.Services.DuyetPhieuTraUseCase useCase = new Application.Services.DuyetPhieuTraUseCase();
 
-            if (useCase.Execute(maPhieu, "Từ chối", "", 0))
+            if (useCase.Execute(maPhieu, TrangThaiPhieuTra.TuChoi.GetDescription(), "", 0))
             {
                 MessageBox.Show("Đã từ chối phiếu trả hàng. Vui lòng trả lại hàng cho khách!");
                 LoadLaiLuoiChoDuyet();
