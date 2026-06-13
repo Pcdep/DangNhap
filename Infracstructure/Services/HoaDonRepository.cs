@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -62,6 +63,58 @@ namespace Infrastructure.Services
                 }
             }
             return dt;
+        }
+
+
+        public bool ThemHoaDon(HoaDon hd, System.Collections.Generic.List<ChiTietHoaDon> dsChiTiet)
+        {
+            try
+            {
+                using (SqlConnection conn = Db.Open())
+                {
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // 1. Lưu HoaDon
+                            string queryHoaDon = @"INSERT INTO HoaDon (MaHoaDon, NgayLap, TongTien) VALUES (@MaHD, @Ngay, @TongTien)";
+                            using (SqlCommand cmdHD = new SqlCommand(queryHoaDon, conn, transaction))
+                            {
+                                cmdHD.Parameters.AddWithValue("@MaHD", hd.MaHoaDon);
+                                cmdHD.Parameters.AddWithValue("@Ngay", hd.NgayLap);
+                                cmdHD.Parameters.AddWithValue("@TongTien", hd.TongTien);
+                                cmdHD.ExecuteNonQuery();
+                            }
+
+                            // 2. Lưu ChiTietHoaDon
+                            string queryChiTiet = @"INSERT INTO ChiTietHoaDon (MaHoaDon, MaSP, SoLuong, GiaBan) VALUES (@MaHD, @MaSP, @SoLuong, @GiaBan)";
+                            foreach (var item in dsChiTiet)
+                            {
+                                using (SqlCommand cmdCT = new SqlCommand(queryChiTiet, conn, transaction))
+                                {
+                                    cmdCT.Parameters.AddWithValue("@MaHD", item.MaHoaDon);
+                                    cmdCT.Parameters.AddWithValue("@MaSP", item.MaSP);
+                                    cmdCT.Parameters.AddWithValue("@SoLuong", item.SoLuong);
+                                    cmdCT.Parameters.AddWithValue("@GiaBan", item.GiaBan);
+                                    cmdCT.ExecuteNonQuery();
+                                }
+                            }
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

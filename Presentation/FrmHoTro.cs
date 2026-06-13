@@ -91,12 +91,12 @@ namespace Presentation
         {
             try
             {
-                Infrastructure.Services.HoaDonRepository repo = new Infrastructure.Services.HoaDonRepository();
+                Application.Services.TraCuuHoaDonUseCase useCase = new Application.Services.TraCuuHoaDonUseCase();
 
                 if (dgvLichSuMua != null)
                 {
                     dgvLichSuMua.AutoGenerateColumns = false;
-                    dgvLichSuMua.DataSource = repo.LayTatCaLichSuMuaHang();
+                    dgvLichSuMua.DataSource = useCase.LayTatCaLichSu();
                 }
             }
             catch (Exception ex)
@@ -114,19 +114,18 @@ namespace Presentation
                 return;
             }
 
-            Infrastructure.Services.HoaDonRepository repo = new Infrastructure.Services.HoaDonRepository();
+            // 👉 GỌI TỚI USECASE THAY VÌ REPOSITORY
+            Application.Services.TraCuuHoaDonUseCase useCase = new Application.Services.TraCuuHoaDonUseCase();
 
-            // 1. Tìm Hóa đơn và gán Ngày Mua lên Label
-            DateTime? ngayMua = repo.LayNgayLapHoaDon(maHD);
+            // 1. Tìm Hóa đơn và gán Ngày Mua lên TextBox (như bạn đã sửa ở bài trước)
+            DateTime? ngayMua = useCase.LayNgayLap(maHD);
             if (ngayMua == null)
             {
                 MessageBox.Show("Không tìm thấy Hóa Đơn này trên hệ thống!", "Lỗi");
-                // Xóa trắng lưới nếu nhập sai
                 if (dgvLichSuMua != null) dgvLichSuMua.DataSource = null;
                 return;
             }
 
-            // Nếu tìm thấy, gán ngày lên Label (Đổi định dạng thành yyyy-MM-dd để UseCase dễ tính toán)
             if (txtNgayMua != null)
                 txtNgayMua.Text = ngayMua.Value.ToString("yyyy-MM-dd");
 
@@ -134,7 +133,7 @@ namespace Presentation
             if (dgvLichSuMua != null)
             {
                 dgvLichSuMua.AutoGenerateColumns = false;
-                dgvLichSuMua.DataSource = repo.LayChiTietHoaDon(maHD);
+                dgvLichSuMua.DataSource = useCase.LayChiTietHoaDon(maHD);
             }
         }
 

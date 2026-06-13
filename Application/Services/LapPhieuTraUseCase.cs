@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// 👉 1. Khai báo thêm 2 thư viện này để dùng được Enum và GetDescription()
+
 using Domain.Enums;
 using Domain.Extensions;
 

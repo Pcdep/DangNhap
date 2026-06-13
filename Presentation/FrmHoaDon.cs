@@ -57,66 +57,47 @@ namespace Presentation
 
         private void btnInHoaDon_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chuỗi kết nối thực tế đang dùng là:\n" + Db.ConnString, "Test Kết Nối");
             try
             {
-                using (SqlConnection conn = Db.Open())
+                // 1. Đóng gói dữ liệu vào Entities
+                Domain.Entities.HoaDon hd = new Domain.Entities.HoaDon
                 {
-                    // ✅ Bọc cả 2 INSERT trong Transaction để đảm bảo toàn vẹn
-                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    MaHoaDon = _maHoaDonHienTai,
+                    NgayLap = DateTime.Now,
+                    TongTien = _tongTien
+                };
+
+                List<Domain.Entities.ChiTietHoaDon> dsChiTiet = new List<Domain.Entities.ChiTietHoaDon>();
+                foreach (var item in _danhSachMua)
+                {
+                    dsChiTiet.Add(new Domain.Entities.ChiTietHoaDon
                     {
-                        try
-                        {
-                            // 1. Lưu HoaDon
-                            string queryHoaDon = @"INSERT INTO HoaDon 
-                                          (MaHoaDon, NgayLap, TongTien) 
-                                          VALUES (@MaHD, @Ngay, @TongTien)";
-                            using (SqlCommand cmdHD = new SqlCommand(queryHoaDon, conn, transaction))
-                            {
-                                cmdHD.Parameters.AddWithValue("@MaHD", _maHoaDonHienTai);
-                                cmdHD.Parameters.AddWithValue("@Ngay", DateTime.Now);
-                                cmdHD.Parameters.AddWithValue("@TongTien", _tongTien);
-                                cmdHD.ExecuteNonQuery();
-                            }
+                        MaHoaDon = _maHoaDonHienTai,
+                        MaSP = item.MaSP,
+                        SoLuong = item.SoLuong,
+                        GiaBan = item.GiaBan
+                    });
+                }
 
-                            // 2. Lưu ChiTietHoaDon
-                            string queryChiTiet = @"INSERT INTO ChiTietHoaDon 
-                                           (MaHoaDon, MaSP, SoLuong, GiaBan) 
-                                           VALUES (@MaHD, @MaSP, @SoLuong, @GiaBan)";
-                            foreach (var item in _danhSachMua)
-                            {
-                                using (SqlCommand cmdCT = new SqlCommand(queryChiTiet, conn, transaction))
-                                {
-                                    cmdCT.Parameters.AddWithValue("@MaHD", _maHoaDonHienTai);
-                                    cmdCT.Parameters.AddWithValue("@MaSP", item.MaSP);
-                                    cmdCT.Parameters.AddWithValue("@SoLuong", item.SoLuong);
-                                    cmdCT.Parameters.AddWithValue("@GiaBan", item.GiaBan);
-                                    cmdCT.ExecuteNonQuery();
-                                }
-                            }
+                // 2. Gọi UseCase ở tầng Application
+                Application.Services.LuuHoaDonUseCase useCase = new Application.Services.LuuHoaDonUseCase();
+                bool ketQua = useCase.Execute(hd, dsChiTiet);
 
-                            transaction.Commit(); // ✅ Commit khi cả 2 đều OK
-
-                            MessageBox.Show("Đã lưu và in hóa đơn thành công!",
-                                            "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
-                        }
-                        catch (Exception innerEx)
-                        {
-                            transaction.Rollback();
-                            // ✅ Hiện ĐẦY ĐỦ lỗi để debug
-                            MessageBox.Show(
-                                $"Lỗi INSERT:\n{innerEx.Message}\n\n" +
-                                $"Inner: {innerEx.InnerException?.Message}\n\n" +
-                                $"Chi tiết: MaHD={_maHoaDonHienTai}, SoMon={_danhSachMua?.Count}",
-                                "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                // 3. Hiển thị kết quả
+                if (ketQua)
+                {
+                    MessageBox.Show("Hệ thống đang kết nối máy in Bill...\nĐã lưu và in hóa đơn thành công!",
+                                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi lưu hóa đơn vào cơ sở dữ liệu!", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không mở được kết nối DB:\n" + ex.Message, "Lỗi Kết Nối");
+                MessageBox.Show("Lỗi hệ thống:\n" + ex.Message, "Lỗi Kết Nối");
             }
         }
 
