@@ -70,6 +70,7 @@
             btnInHoaDon.Size = new Size(192, 38);
             btnInHoaDon.TabIndex = 9;
             btnInHoaDon.Text = "In hóa đơn";
+            btnInHoaDon.Click += btnInHoaDon_Click;
             // 
             // btnDong
             // 

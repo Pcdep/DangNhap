@@ -32,7 +32,10 @@ namespace Infracstructure.Services
         public List<PhieuTra> LayDanhSachChoDuyet()
         {
             List<PhieuTra> list = new List<PhieuTra>();
-            string query = "SELECT * FROM PhieuTra WHERE TrangThai = N'Chờ duyệt'";
+            string query = @"SELECT p.*, s.TenSP 
+                     FROM PhieuTra p 
+                     JOIN SanPham s ON p.MaSP = s.MaSP 
+                     WHERE p.TrangThai = N'Chờ duyệt'";
             using (SqlConnection conn = Db.Open())
             using (SqlCommand cmd = new SqlCommand(query, conn))
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -43,6 +46,7 @@ namespace Infracstructure.Services
                     {
                         MaPhieu = reader["MaPhieu"].ToString(),
                         MaHoaDon = reader["MaHoaDon"].ToString(),
+                        TenSP = reader["TenSP"].ToString(),
                         MaSP = reader["MaSP"].ToString(),
                         SoLuongTra = Convert.ToInt32(reader["SoLuongTra"]),
                         LyDo = reader["LyDo"].ToString(),

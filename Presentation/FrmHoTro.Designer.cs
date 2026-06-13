@@ -40,9 +40,7 @@
             btnTaoPhieu = new Guna.UI2.WinForms.Guna2Button();
             txtMaHoaDon = new TextBox();
             txtMaSP = new TextBox();
-            lblNgayMua = new Label();
             dgvLichSuMua = new Guna.UI2.WinForms.Guna2DataGridView();
-            btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             MaHoaDon = new DataGridViewTextBoxColumn();
             NgayLap = new DataGridViewTextBoxColumn();
             MaSP = new DataGridViewTextBoxColumn();
@@ -50,6 +48,8 @@
             SoLuong = new DataGridViewTextBoxColumn();
             GiaBan = new DataGridViewTextBoxColumn();
             ThanhTien = new DataGridViewTextBoxColumn();
+            btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
+            txtNgayMua = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvLichSuMua).BeginInit();
             SuspendLayout();
             // 
@@ -93,19 +93,10 @@
             // 
             // txtMaSP
             // 
-            txtMaSP.Location = new Point(661, 365);
+            txtMaSP.Location = new Point(112, 299);
             txtMaSP.Name = "txtMaSP";
-            txtMaSP.Size = new Size(150, 31);
+            txtMaSP.Size = new Size(308, 31);
             txtMaSP.TabIndex = 5;
-            // 
-            // lblNgayMua
-            // 
-            lblNgayMua.AutoSize = true;
-            lblNgayMua.Location = new Point(661, 434);
-            lblNgayMua.Name = "lblNgayMua";
-            lblNgayMua.Size = new Size(81, 25);
-            lblNgayMua.TabIndex = 6;
-            lblNgayMua.Text = "Ngày Trả";
             // 
             // dgvLichSuMua
             // 
@@ -143,23 +134,6 @@
             dgvLichSuMua.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
             dgvLichSuMua.ThemeStyle.RowsStyle.Height = 33;
             dgvLichSuMua.CellClick += dgvLichSuMua_CellClick;
-            // 
-            // btnTraCuu
-            // 
-            btnTraCuu.CustomizableEdges = customizableEdges3;
-            btnTraCuu.DisabledState.BorderColor = Color.DarkGray;
-            btnTraCuu.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnTraCuu.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnTraCuu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnTraCuu.Font = new Font("Segoe UI", 9F);
-            btnTraCuu.ForeColor = Color.White;
-            btnTraCuu.Location = new Point(455, 358);
-            btnTraCuu.Name = "btnTraCuu";
-            btnTraCuu.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnTraCuu.Size = new Size(132, 48);
-            btnTraCuu.TabIndex = 8;
-            btnTraCuu.Text = "Tra Cứu";
-            btnTraCuu.Click += btnTraCuu_Click;
             // 
             // MaHoaDon
             // 
@@ -210,14 +184,38 @@
             ThanhTien.MinimumWidth = 8;
             ThanhTien.Name = "ThanhTien";
             // 
+            // btnTraCuu
+            // 
+            btnTraCuu.CustomizableEdges = customizableEdges3;
+            btnTraCuu.DisabledState.BorderColor = Color.DarkGray;
+            btnTraCuu.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnTraCuu.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnTraCuu.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnTraCuu.Font = new Font("Segoe UI", 9F);
+            btnTraCuu.ForeColor = Color.White;
+            btnTraCuu.Location = new Point(553, 669);
+            btnTraCuu.Name = "btnTraCuu";
+            btnTraCuu.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnTraCuu.Size = new Size(132, 34);
+            btnTraCuu.TabIndex = 8;
+            btnTraCuu.Text = "Tra Cứu";
+            btnTraCuu.Click += btnTraCuu_Click;
+            // 
+            // txtNgayMua
+            // 
+            txtNgayMua.Location = new Point(546, 299);
+            txtNgayMua.Name = "txtNgayMua";
+            txtNgayMua.Size = new Size(231, 31);
+            txtNgayMua.TabIndex = 9;
+            // 
             // FrmHoTro
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(938, 734);
+            Controls.Add(txtNgayMua);
             Controls.Add(btnTraCuu);
             Controls.Add(dgvLichSuMua);
-            Controls.Add(lblNgayMua);
             Controls.Add(txtMaSP);
             Controls.Add(txtMaHoaDon);
             Controls.Add(btnTaoPhieu);
@@ -237,7 +235,6 @@
         private Guna.UI2.WinForms.Guna2Button btnTaoPhieu;
         private TextBox txtMaHoaDon;
         private TextBox txtMaSP;
-        private Label lblNgayMua;
         private Guna.UI2.WinForms.Guna2DataGridView dgvLichSuMua;
         private Guna.UI2.WinForms.Guna2Button btnTraCuu;
         private DataGridViewTextBoxColumn MaHoaDon;
@@ -247,5 +244,6 @@
         private DataGridViewTextBoxColumn SoLuong;
         private DataGridViewTextBoxColumn GiaBan;
         private DataGridViewTextBoxColumn ThanhTien;
+        private TextBox txtNgayMua;
     }
 }

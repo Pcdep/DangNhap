@@ -101,10 +101,11 @@
             txtMaPhieu_Kho = new TextBox();
             btnTuChoi = new Guna.UI2.WinForms.Guna2Button();
             btnDongY = new Guna.UI2.WinForms.Guna2Button();
-            Column1 = new DataGridViewTextBoxColumn();
+            MaPhieu = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
+            colTenSP_Kho = new DataGridViewTextBoxColumn();
+            colMaSP = new DataGridViewTextBoxColumn();
+            SoLuongTra = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
@@ -251,7 +252,7 @@
             // lblTongGiaTriKho
             // 
             lblTongGiaTriKho.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblTongGiaTriKho.Location = new Point(671, 18);
+            lblTongGiaTriKho.Location = new Point(656, 18);
             lblTongGiaTriKho.Name = "lblTongGiaTriKho";
             lblTongGiaTriKho.Size = new Size(150, 31);
             lblTongGiaTriKho.TabIndex = 14;
@@ -259,7 +260,7 @@
             // lblTongSoLuongKho
             // 
             lblTongSoLuongKho.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblTongSoLuongKho.Location = new Point(390, 18);
+            lblTongSoLuongKho.Location = new Point(375, 18);
             lblTongSoLuongKho.Name = "lblTongSoLuongKho";
             lblTongSoLuongKho.Size = new Size(150, 31);
             lblTongSoLuongKho.TabIndex = 13;
@@ -268,7 +269,7 @@
             // 
             label9.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label9.AutoSize = true;
-            label9.Location = new Point(579, 21);
+            label9.Location = new Point(564, 21);
             label9.Name = "label9";
             label9.Size = new Size(86, 25);
             label9.TabIndex = 16;
@@ -278,7 +279,7 @@
             // 
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(292, 21);
+            label2.Location = new Point(277, 21);
             label2.Name = "label2";
             label2.Size = new Size(92, 25);
             label2.TabIndex = 15;
@@ -660,7 +661,7 @@
             dgvPhieuChoDuyet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvPhieuChoDuyet.ColumnHeadersHeight = 27;
             dgvPhieuChoDuyet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvPhieuChoDuyet.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6, Column7 });
+            dgvPhieuChoDuyet.Columns.AddRange(new DataGridViewColumn[] { MaPhieu, Column2, colTenSP_Kho, colMaSP, SoLuongTra, Column5, Column6, Column7 });
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.White;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
@@ -681,6 +682,8 @@
             dgvPhieuChoDuyet.ThemeStyle.HeaderStyle.Height = 27;
             dgvPhieuChoDuyet.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
             dgvPhieuChoDuyet.ThemeStyle.RowsStyle.Height = 33;
+            dgvPhieuChoDuyet.CellClick += dgvPhieuChoDuyet_CellContentClick;
+            dgvPhieuChoDuyet.CellContentClick += dgvPhieuChoDuyet_CellContentClick;
             // 
             // txtSoLuong_Kho
             // 
@@ -737,12 +740,12 @@
             btnDongY.Text = "Đồng Ý";
             btnDongY.Click += btnDongY_Click;
             // 
-            // Column1
+            // MaPhieu
             // 
-            Column1.DataPropertyName = "MaPhieu";
-            Column1.HeaderText = "Mã Phiếu";
-            Column1.MinimumWidth = 8;
-            Column1.Name = "Column1";
+            MaPhieu.DataPropertyName = "MaPhieu";
+            MaPhieu.HeaderText = "Mã Phiếu";
+            MaPhieu.MinimumWidth = 8;
+            MaPhieu.Name = "MaPhieu";
             // 
             // Column2
             // 
@@ -751,19 +754,26 @@
             Column2.MinimumWidth = 8;
             Column2.Name = "Column2";
             // 
-            // Column3
+            // colTenSP_Kho
             // 
-            Column3.DataPropertyName = "MaSP";
-            Column3.HeaderText = "Mã Sản Phẩm";
-            Column3.MinimumWidth = 8;
-            Column3.Name = "Column3";
+            colTenSP_Kho.DataPropertyName = "TenSP";
+            colTenSP_Kho.HeaderText = "Tên Sản Phẩm";
+            colTenSP_Kho.MinimumWidth = 8;
+            colTenSP_Kho.Name = "colTenSP_Kho";
             // 
-            // Column4
+            // colMaSP
             // 
-            Column4.DataPropertyName = "SoLuongTra";
-            Column4.HeaderText = "Số Lượng Trả";
-            Column4.MinimumWidth = 8;
-            Column4.Name = "Column4";
+            colMaSP.DataPropertyName = "MaSP";
+            colMaSP.HeaderText = "Mã Sản Phẩm";
+            colMaSP.MinimumWidth = 8;
+            colMaSP.Name = "colMaSP";
+            // 
+            // SoLuongTra
+            // 
+            SoLuongTra.DataPropertyName = "SoLuongTra";
+            SoLuongTra.HeaderText = "Số Lượng Trả";
+            SoLuongTra.MinimumWidth = 8;
+            SoLuongTra.Name = "SoLuongTra";
             // 
             // Column5
             // 
@@ -842,14 +852,6 @@
         private TextBox lblTongGiaTriKho;
         private TextBox lblTongSoLuongKho;
         private Guna.UI2.WinForms.Guna2DataGridView dgvDanhSachTongKho;
-        private DataGridViewTextBoxColumn MaSP;
-        private DataGridViewTextBoxColumn TenSP;
-        private DataGridViewTextBoxColumn SoLuongTon;
-        private DataGridViewTextBoxColumn GiaNhap;
-        private DataGridViewTextBoxColumn DonViTinh;
-        private DataGridViewTextBoxColumn TenNCC;
-        private DataGridViewTextBoxColumn NgayNhapCuoi;
-        private DataGridViewTextBoxColumn MaPNCuoi;
         private Panel panel1;
         private TextBox txtChiTietNgayNhap;
         private TextBox txtChiTietTrangThaiGiao;
@@ -864,10 +866,19 @@
         private TextBox txtSoLuong_Kho;
         private TextBox txtMaSP_Kho;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPhieuChoDuyet;
-        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn MaSP;
+        private DataGridViewTextBoxColumn TenSP;
+        private DataGridViewTextBoxColumn SoLuongTon;
+        private DataGridViewTextBoxColumn GiaNhap;
+        private DataGridViewTextBoxColumn DonViTinh;
+        private DataGridViewTextBoxColumn TenNCC;
+        private DataGridViewTextBoxColumn NgayNhapCuoi;
+        private DataGridViewTextBoxColumn MaPNCuoi;
+        private DataGridViewTextBoxColumn MaPhieu;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn colTenSP_Kho;
+        private DataGridViewTextBoxColumn colMaSP;
+        private DataGridViewTextBoxColumn SoLuongTra;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;

@@ -10,7 +10,8 @@ namespace Domain.Entities
     {
         public string MaPhieu { get; set; }
         public string MaHoaDon { get; set; }
-        public string MaSP { get; set; } // Sản phẩm bị lỗi
+        public string MaSP { get; set; }
+        public string TenSP { get; set; }
         public int SoLuongTra { get; set; }
         public string LyDo { get; set; }
         public DateTime NgayLap { get; set; }

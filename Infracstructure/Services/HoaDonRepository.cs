@@ -25,10 +25,11 @@ namespace Infrastructure.Services
         {
             DataTable dt = new DataTable();
             // Kết hợp (JOIN) bảng ChiTietHoaDon và SanPham để lấy tên SP
-            string query = @"SELECT c.MaSP, s.TenSP, c.SoLuong, c.GiaBan, (c.SoLuong * c.GiaBan) as ThanhTien 
-                             FROM ChiTietHoaDon c 
-                             JOIN SanPham s ON c.MaSP = s.MaSP 
-                             WHERE c.MaHoaDon = @MaHD";
+            string query = @"SELECT c.MaHoaDon, h.NgayLap, c.MaSP, s.TenSP, c.SoLuong, c.GiaBan, (c.SoLuong * c.GiaBan) as ThanhTien 
+                     FROM ChiTietHoaDon c 
+                     JOIN HoaDon h ON c.MaHoaDon = h.MaHoaDon
+                     JOIN SanPham s ON c.MaSP = s.MaSP 
+                     WHERE c.MaHoaDon = @MaHD";
 
             using (SqlConnection conn = Db.Open())
             using (SqlCommand cmd = new SqlCommand(query, conn))

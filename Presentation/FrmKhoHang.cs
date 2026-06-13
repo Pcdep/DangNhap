@@ -401,21 +401,49 @@ namespace Presentation
 
         private void btnTuChoi_Click(object sender, EventArgs e)
         {
-            string maPhieu = txtMaPhieu_Kho.Text;
+            if (string.IsNullOrWhiteSpace(txtMaPhieu_Kho.Text))
+            {
+                MessageBox.Show("Vui lòng chọn một phiếu trên bảng để thao tác!", "Cảnh báo");
+                return;
+            }
 
+            string maPhieu = txtMaPhieu_Kho.Text;
             Application.Services.DuyetPhieuTraUseCase useCase = new Application.Services.DuyetPhieuTraUseCase();
 
-            // Gửi trạng thái "Từ chối" (UseCase sẽ không cộng hàng)
             if (useCase.Execute(maPhieu, "Từ chối", "", 0))
             {
                 MessageBox.Show("Đã từ chối phiếu trả hàng. Vui lòng trả lại hàng cho khách!");
                 LoadLaiLuoiChoDuyet();
+
+                // Xóa trắng TextBox sau khi duyệt xong
+                txtMaPhieu_Kho.Clear();
+                txtMaSP_Kho.Clear();
+                txtSoLuong_Kho.Clear();
             }
         }
 
         private void guna2TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvPhieuChoDuyet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Bỏ qua nếu click vào tiêu đề cột hoặc vùng trống
+            if (e.RowIndex >= 0 && e.RowIndex < dgvPhieuChoDuyet.Rows.Count)
+            {
+                DataGridViewRow row = dgvPhieuChoDuyet.Rows[e.RowIndex];
+
+                // Đổ dữ liệu từ lưới xuống Textbox dưới kho (Nhớ đảm bảo Name của cột DataGridView gõ đúng chữ)
+                if (row.Cells["MaPhieu"].Value != null)
+                    txtMaPhieu_Kho.Text = row.Cells["MaPhieu"].Value.ToString();
+
+                if (row.Cells["colMaSP"].Value != null)
+                    txtMaSP_Kho.Text = row.Cells["colMaSP"].Value.ToString();
+
+                if (row.Cells["SoLuongTra"].Value != null)
+                    txtSoLuong_Kho.Text = row.Cells["SoLuongTra"].Value.ToString();
+            }
         }
     }
 }
